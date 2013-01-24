@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20CA978116AF8EC20099F6F5 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 20CA977A16AF8EC20099F6F5 /* base64.c */; };
+		20CA978216AF8EC20099F6F5 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA977D16AF8EC20099F6F5 /* NSData+SRB64Additions.m */; };
+		20CA978316AF8EC20099F6F5 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA978016AF8EC20099F6F5 /* SRWebSocket.m */; };
+		20CA978616AF8EEF0099F6F5 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 20CA978516AF8EEF0099F6F5 /* libicucore.dylib */; };
+		20CA978816AF8EF80099F6F5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20CA978716AF8EF80099F6F5 /* CFNetwork.framework */; };
+		20CA978A16AF8F010099F6F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20CA978916AF8F010099F6F5 /* Security.framework */; };
+		20CA979116AF9A3E0099F6F5 /* HashValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA979016AF9A3E0099F6F5 /* HashValue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		20D9DFEF16A8974200393078 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D9DFEE16A8974200393078 /* UIKit.framework */; };
 		20D9DFF116A8974200393078 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D9DFF016A8974200393078 /* Foundation.framework */; };
 		20D9DFF316A8974200393078 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D9DFF216A8974200393078 /* CoreGraphics.framework */; };
@@ -16,17 +23,45 @@
 		20D9E00116A8974200393078 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E00016A8974200393078 /* Default.png */; };
 		20D9E00316A8974200393078 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E00216A8974200393078 /* Default@2x.png */; };
 		20D9E00516A8974200393078 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E00416A8974200393078 /* Default-568h@2x.png */; };
-		20D9E00816A8974200393078 /* LTFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E00716A8974200393078 /* LTFirstViewController.m */; };
-		20D9E00A16A8974200393078 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E00916A8974200393078 /* first.png */; };
-		20D9E00C16A8974200393078 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E00B16A8974200393078 /* first@2x.png */; };
-		20D9E00F16A8974200393078 /* LTSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E00E16A8974200393078 /* LTSecondViewController.m */; };
-		20D9E01116A8974200393078 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E01016A8974200393078 /* second.png */; };
-		20D9E01316A8974200393078 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E01216A8974200393078 /* second@2x.png */; };
-		20D9E01616A8974200393078 /* LTFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E01416A8974200393078 /* LTFirstViewController.xib */; };
-		20D9E01916A8974200393078 /* LTSecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E01716A8974200393078 /* LTSecondViewController.xib */; };
+		20D9E00816A8974200393078 /* LTNowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E00716A8974200393078 /* LTNowViewController.m */; };
+		20D9E00F16A8974200393078 /* LTScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E00E16A8974200393078 /* LTScheduleViewController.m */; };
+		20D9E01616A8974200393078 /* LTNowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E01416A8974200393078 /* LTNowViewController.xib */; };
+		20D9E01916A8974200393078 /* LTScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E01716A8974200393078 /* LTScheduleViewController.xib */; };
+		20D9E02216A8983A00393078 /* schedule.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E02016A8983A00393078 /* schedule.png */; };
+		20D9E02316A8983A00393078 /* schedule@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E02116A8983A00393078 /* schedule@2x.png */; };
+		20D9E02616A8988400393078 /* now.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E02416A8988400393078 /* now.png */; };
+		20D9E02716A8988400393078 /* now@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E02516A8988400393078 /* now@2x.png */; };
+		20D9E03216A89DC900393078 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D9E03116A89DC900393078 /* QuartzCore.framework */; };
+		20D9E04C16A89E3000393078 /* checkerboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E03416A89E3000393078 /* checkerboard.png */; };
+		20D9E04D16A89E3000393078 /* checkerboard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E03516A89E3000393078 /* checkerboard@2x.png */; };
+		20D9E04E16A89E3000393078 /* colorPickerKnob.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E03616A89E3000393078 /* colorPickerKnob.png */; };
+		20D9E04F16A89E3000393078 /* colorPickerKnob@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E03716A89E3000393078 /* colorPickerKnob@2x.png */; };
+		20D9E05016A89E3000393078 /* HSV.c in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E03816A89E3000393078 /* HSV.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		20D9E05116A89E3000393078 /* KZColorCompareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E03B16A89E3000393078 /* KZColorCompareView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		20D9E05216A89E3000393078 /* KZColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E03D16A89E3000393078 /* KZColorPicker.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		20D9E05316A89E3000393078 /* KZColorPickerAlphaSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E03F16A89E3000393078 /* KZColorPickerAlphaSlider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		20D9E05416A89E3000393078 /* KZColorPickerBrightnessSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E04116A89E3000393078 /* KZColorPickerBrightnessSlider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		20D9E05516A89E3000393078 /* KZColorPickerHSWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E04316A89E3000393078 /* KZColorPickerHSWheel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		20D9E05616A89E3000393078 /* KZColorPickerSwatchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E04516A89E3000393078 /* KZColorPickerSwatchView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		20D9E05716A89E3000393078 /* KZUnitSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E04716A89E3000393078 /* KZUnitSlider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		20D9E05816A89E3000393078 /* pickerColorWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E04816A89E3000393078 /* pickerColorWheel.png */; };
+		20D9E05916A89E3000393078 /* pickerColorWheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E04916A89E3000393078 /* pickerColorWheel@2x.png */; };
+		20D9E05A16A89E3000393078 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E04B16A89E3000393078 /* UIColor-Expanded.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20CA977A16AF8EC20099F6F5 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
+		20CA977B16AF8EC20099F6F5 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
+		20CA977C16AF8EC20099F6F5 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
+		20CA977D16AF8EC20099F6F5 /* NSData+SRB64Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SRB64Additions.m"; sourceTree = "<group>"; };
+		20CA977E16AF8EC20099F6F5 /* SocketRocket-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SocketRocket-Prefix.pch"; sourceTree = "<group>"; };
+		20CA977F16AF8EC20099F6F5 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		20CA978016AF8EC20099F6F5 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		20CA978516AF8EEF0099F6F5 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		20CA978716AF8EF80099F6F5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		20CA978916AF8F010099F6F5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		20CA978F16AF9A3E0099F6F5 /* HashValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HashValue.h; sourceTree = "<group>"; };
+		20CA979016AF9A3E0099F6F5 /* HashValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HashValue.m; sourceTree = "<group>"; };
 		20D9DFEA16A8974200393078 /* Lights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lights.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20D9DFEE16A8974200393078 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		20D9DFF016A8974200393078 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -40,16 +75,41 @@
 		20D9E00016A8974200393078 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		20D9E00216A8974200393078 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		20D9E00416A8974200393078 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		20D9E00616A8974200393078 /* LTFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTFirstViewController.h; sourceTree = "<group>"; };
-		20D9E00716A8974200393078 /* LTFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTFirstViewController.m; sourceTree = "<group>"; };
-		20D9E00916A8974200393078 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		20D9E00B16A8974200393078 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		20D9E00D16A8974200393078 /* LTSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTSecondViewController.h; sourceTree = "<group>"; };
-		20D9E00E16A8974200393078 /* LTSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTSecondViewController.m; sourceTree = "<group>"; };
-		20D9E01016A8974200393078 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		20D9E01216A8974200393078 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		20D9E01516A8974200393078 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LTFirstViewController.xib; sourceTree = "<group>"; };
-		20D9E01816A8974200393078 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LTSecondViewController.xib; sourceTree = "<group>"; };
+		20D9E00616A8974200393078 /* LTNowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTNowViewController.h; sourceTree = "<group>"; };
+		20D9E00716A8974200393078 /* LTNowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTNowViewController.m; sourceTree = "<group>"; };
+		20D9E00D16A8974200393078 /* LTScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTScheduleViewController.h; sourceTree = "<group>"; };
+		20D9E00E16A8974200393078 /* LTScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTScheduleViewController.m; sourceTree = "<group>"; };
+		20D9E01516A8974200393078 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LTNowViewController.xib; sourceTree = "<group>"; };
+		20D9E01816A8974200393078 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LTScheduleViewController.xib; sourceTree = "<group>"; };
+		20D9E02016A8983A00393078 /* schedule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule.png; sourceTree = "<group>"; };
+		20D9E02116A8983A00393078 /* schedule@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "schedule@2x.png"; sourceTree = "<group>"; };
+		20D9E02416A8988400393078 /* now.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = now.png; sourceTree = "<group>"; };
+		20D9E02516A8988400393078 /* now@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "now@2x.png"; sourceTree = "<group>"; };
+		20D9E03116A89DC900393078 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		20D9E03416A89E3000393078 /* checkerboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkerboard.png; sourceTree = "<group>"; };
+		20D9E03516A89E3000393078 /* checkerboard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkerboard@2x.png"; sourceTree = "<group>"; };
+		20D9E03616A89E3000393078 /* colorPickerKnob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorPickerKnob.png; sourceTree = "<group>"; };
+		20D9E03716A89E3000393078 /* colorPickerKnob@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "colorPickerKnob@2x.png"; sourceTree = "<group>"; };
+		20D9E03816A89E3000393078 /* HSV.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = HSV.c; sourceTree = "<group>"; };
+		20D9E03916A89E3000393078 /* HSV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSV.h; sourceTree = "<group>"; };
+		20D9E03A16A89E3000393078 /* KZColorCompareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZColorCompareView.h; sourceTree = "<group>"; };
+		20D9E03B16A89E3000393078 /* KZColorCompareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZColorCompareView.m; sourceTree = "<group>"; };
+		20D9E03C16A89E3000393078 /* KZColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZColorPicker.h; sourceTree = "<group>"; };
+		20D9E03D16A89E3000393078 /* KZColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZColorPicker.m; sourceTree = "<group>"; };
+		20D9E03E16A89E3000393078 /* KZColorPickerAlphaSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZColorPickerAlphaSlider.h; sourceTree = "<group>"; };
+		20D9E03F16A89E3000393078 /* KZColorPickerAlphaSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZColorPickerAlphaSlider.m; sourceTree = "<group>"; };
+		20D9E04016A89E3000393078 /* KZColorPickerBrightnessSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZColorPickerBrightnessSlider.h; sourceTree = "<group>"; };
+		20D9E04116A89E3000393078 /* KZColorPickerBrightnessSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZColorPickerBrightnessSlider.m; sourceTree = "<group>"; };
+		20D9E04216A89E3000393078 /* KZColorPickerHSWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZColorPickerHSWheel.h; sourceTree = "<group>"; };
+		20D9E04316A89E3000393078 /* KZColorPickerHSWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZColorPickerHSWheel.m; sourceTree = "<group>"; };
+		20D9E04416A89E3000393078 /* KZColorPickerSwatchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZColorPickerSwatchView.h; sourceTree = "<group>"; };
+		20D9E04516A89E3000393078 /* KZColorPickerSwatchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZColorPickerSwatchView.m; sourceTree = "<group>"; };
+		20D9E04616A89E3000393078 /* KZUnitSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KZUnitSlider.h; sourceTree = "<group>"; };
+		20D9E04716A89E3000393078 /* KZUnitSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZUnitSlider.m; sourceTree = "<group>"; };
+		20D9E04816A89E3000393078 /* pickerColorWheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pickerColorWheel.png; sourceTree = "<group>"; };
+		20D9E04916A89E3000393078 /* pickerColorWheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pickerColorWheel@2x.png"; sourceTree = "<group>"; };
+		20D9E04A16A89E3000393078 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
+		20D9E04B16A89E3000393078 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +117,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20CA978A16AF8F010099F6F5 /* Security.framework in Frameworks */,
+				20CA978816AF8EF80099F6F5 /* CFNetwork.framework in Frameworks */,
+				20CA978616AF8EEF0099F6F5 /* libicucore.dylib in Frameworks */,
+				20D9E03216A89DC900393078 /* QuartzCore.framework in Frameworks */,
 				20D9DFEF16A8974200393078 /* UIKit.framework in Frameworks */,
 				20D9DFF116A8974200393078 /* Foundation.framework in Frameworks */,
 				20D9DFF316A8974200393078 /* CoreGraphics.framework in Frameworks */,
@@ -66,6 +130,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20CA977916AF8EC20099F6F5 /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				20CA978F16AF9A3E0099F6F5 /* HashValue.h */,
+				20CA979016AF9A3E0099F6F5 /* HashValue.m */,
+				20CA977A16AF8EC20099F6F5 /* base64.c */,
+				20CA977B16AF8EC20099F6F5 /* base64.h */,
+				20CA977C16AF8EC20099F6F5 /* NSData+SRB64Additions.h */,
+				20CA977D16AF8EC20099F6F5 /* NSData+SRB64Additions.m */,
+				20CA977E16AF8EC20099F6F5 /* SocketRocket-Prefix.pch */,
+				20CA977F16AF8EC20099F6F5 /* SRWebSocket.h */,
+				20CA978016AF8EC20099F6F5 /* SRWebSocket.m */,
+			);
+			path = SocketRocket;
+			sourceTree = "<group>";
+		};
 		20D9DFDF16A8974200393078 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +166,10 @@
 		20D9DFED16A8974200393078 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20CA978916AF8F010099F6F5 /* Security.framework */,
+				20CA978716AF8EF80099F6F5 /* CFNetwork.framework */,
+				20CA978516AF8EEF0099F6F5 /* libicucore.dylib */,
+				20D9E03116A89DC900393078 /* QuartzCore.framework */,
 				20D9DFEE16A8974200393078 /* UIKit.framework */,
 				20D9DFF016A8974200393078 /* Foundation.framework */,
 				20D9DFF216A8974200393078 /* CoreGraphics.framework */,
@@ -96,18 +180,17 @@
 		20D9DFF416A8974200393078 /* Lights */ = {
 			isa = PBXGroup;
 			children = (
+				20CA977916AF8EC20099F6F5 /* SocketRocket */,
+				20D9E03316A89E3000393078 /* ColorPicker */,
 				20D9DFFD16A8974200393078 /* LTAppDelegate.h */,
 				20D9DFFE16A8974200393078 /* LTAppDelegate.m */,
-				20D9E00616A8974200393078 /* LTFirstViewController.h */,
-				20D9E00716A8974200393078 /* LTFirstViewController.m */,
-				20D9E00916A8974200393078 /* first.png */,
-				20D9E00B16A8974200393078 /* first@2x.png */,
-				20D9E00D16A8974200393078 /* LTSecondViewController.h */,
-				20D9E00E16A8974200393078 /* LTSecondViewController.m */,
-				20D9E01016A8974200393078 /* second.png */,
-				20D9E01216A8974200393078 /* second@2x.png */,
-				20D9E01416A8974200393078 /* LTFirstViewController.xib */,
-				20D9E01716A8974200393078 /* LTSecondViewController.xib */,
+				20D9E00616A8974200393078 /* LTNowViewController.h */,
+				20D9E00716A8974200393078 /* LTNowViewController.m */,
+				20D9E00D16A8974200393078 /* LTScheduleViewController.h */,
+				20D9E00E16A8974200393078 /* LTScheduleViewController.m */,
+				20D9E01416A8974200393078 /* LTNowViewController.xib */,
+				20D9E01716A8974200393078 /* LTScheduleViewController.xib */,
+				20D9E01F16A8983000393078 /* Images */,
 				20D9DFF516A8974200393078 /* Supporting Files */,
 			);
 			path = Lights;
@@ -125,6 +208,48 @@
 				20D9E00416A8974200393078 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		20D9E01F16A8983000393078 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				20D9E02416A8988400393078 /* now.png */,
+				20D9E02516A8988400393078 /* now@2x.png */,
+				20D9E02016A8983A00393078 /* schedule.png */,
+				20D9E02116A8983A00393078 /* schedule@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		20D9E03316A89E3000393078 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				20D9E03416A89E3000393078 /* checkerboard.png */,
+				20D9E03516A89E3000393078 /* checkerboard@2x.png */,
+				20D9E03616A89E3000393078 /* colorPickerKnob.png */,
+				20D9E03716A89E3000393078 /* colorPickerKnob@2x.png */,
+				20D9E03816A89E3000393078 /* HSV.c */,
+				20D9E03916A89E3000393078 /* HSV.h */,
+				20D9E03A16A89E3000393078 /* KZColorCompareView.h */,
+				20D9E03B16A89E3000393078 /* KZColorCompareView.m */,
+				20D9E03C16A89E3000393078 /* KZColorPicker.h */,
+				20D9E03D16A89E3000393078 /* KZColorPicker.m */,
+				20D9E03E16A89E3000393078 /* KZColorPickerAlphaSlider.h */,
+				20D9E03F16A89E3000393078 /* KZColorPickerAlphaSlider.m */,
+				20D9E04016A89E3000393078 /* KZColorPickerBrightnessSlider.h */,
+				20D9E04116A89E3000393078 /* KZColorPickerBrightnessSlider.m */,
+				20D9E04216A89E3000393078 /* KZColorPickerHSWheel.h */,
+				20D9E04316A89E3000393078 /* KZColorPickerHSWheel.m */,
+				20D9E04416A89E3000393078 /* KZColorPickerSwatchView.h */,
+				20D9E04516A89E3000393078 /* KZColorPickerSwatchView.m */,
+				20D9E04616A89E3000393078 /* KZUnitSlider.h */,
+				20D9E04716A89E3000393078 /* KZUnitSlider.m */,
+				20D9E04816A89E3000393078 /* pickerColorWheel.png */,
+				20D9E04916A89E3000393078 /* pickerColorWheel@2x.png */,
+				20D9E04A16A89E3000393078 /* UIColor-Expanded.h */,
+				20D9E04B16A89E3000393078 /* UIColor-Expanded.m */,
+			);
+			path = ColorPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,12 +308,18 @@
 				20D9E00116A8974200393078 /* Default.png in Resources */,
 				20D9E00316A8974200393078 /* Default@2x.png in Resources */,
 				20D9E00516A8974200393078 /* Default-568h@2x.png in Resources */,
-				20D9E00A16A8974200393078 /* first.png in Resources */,
-				20D9E00C16A8974200393078 /* first@2x.png in Resources */,
-				20D9E01116A8974200393078 /* second.png in Resources */,
-				20D9E01316A8974200393078 /* second@2x.png in Resources */,
-				20D9E01616A8974200393078 /* LTFirstViewController.xib in Resources */,
-				20D9E01916A8974200393078 /* LTSecondViewController.xib in Resources */,
+				20D9E01616A8974200393078 /* LTNowViewController.xib in Resources */,
+				20D9E01916A8974200393078 /* LTScheduleViewController.xib in Resources */,
+				20D9E02216A8983A00393078 /* schedule.png in Resources */,
+				20D9E02316A8983A00393078 /* schedule@2x.png in Resources */,
+				20D9E02616A8988400393078 /* now.png in Resources */,
+				20D9E02716A8988400393078 /* now@2x.png in Resources */,
+				20D9E04C16A89E3000393078 /* checkerboard.png in Resources */,
+				20D9E04D16A89E3000393078 /* checkerboard@2x.png in Resources */,
+				20D9E04E16A89E3000393078 /* colorPickerKnob.png in Resources */,
+				20D9E04F16A89E3000393078 /* colorPickerKnob@2x.png in Resources */,
+				20D9E05816A89E3000393078 /* pickerColorWheel.png in Resources */,
+				20D9E05916A89E3000393078 /* pickerColorWheel@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,8 +332,21 @@
 			files = (
 				20D9DFFB16A8974200393078 /* main.m in Sources */,
 				20D9DFFF16A8974200393078 /* LTAppDelegate.m in Sources */,
-				20D9E00816A8974200393078 /* LTFirstViewController.m in Sources */,
-				20D9E00F16A8974200393078 /* LTSecondViewController.m in Sources */,
+				20D9E00816A8974200393078 /* LTNowViewController.m in Sources */,
+				20D9E00F16A8974200393078 /* LTScheduleViewController.m in Sources */,
+				20D9E05016A89E3000393078 /* HSV.c in Sources */,
+				20D9E05116A89E3000393078 /* KZColorCompareView.m in Sources */,
+				20D9E05216A89E3000393078 /* KZColorPicker.m in Sources */,
+				20D9E05316A89E3000393078 /* KZColorPickerAlphaSlider.m in Sources */,
+				20D9E05416A89E3000393078 /* KZColorPickerBrightnessSlider.m in Sources */,
+				20D9E05516A89E3000393078 /* KZColorPickerHSWheel.m in Sources */,
+				20D9E05616A89E3000393078 /* KZColorPickerSwatchView.m in Sources */,
+				20D9E05716A89E3000393078 /* KZUnitSlider.m in Sources */,
+				20D9E05A16A89E3000393078 /* UIColor-Expanded.m in Sources */,
+				20CA978116AF8EC20099F6F5 /* base64.c in Sources */,
+				20CA978216AF8EC20099F6F5 /* NSData+SRB64Additions.m in Sources */,
+				20CA978316AF8EC20099F6F5 /* SRWebSocket.m in Sources */,
+				20CA979116AF9A3E0099F6F5 /* HashValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,20 +361,20 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		20D9E01416A8974200393078 /* LTFirstViewController.xib */ = {
+		20D9E01416A8974200393078 /* LTNowViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				20D9E01516A8974200393078 /* en */,
 			);
-			name = LTFirstViewController.xib;
+			name = LTNowViewController.xib;
 			sourceTree = "<group>";
 		};
-		20D9E01716A8974200393078 /* LTSecondViewController.xib */ = {
+		20D9E01716A8974200393078 /* LTScheduleViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				20D9E01816A8974200393078 /* en */,
 			);
-			name = LTSecondViewController.xib;
+			name = LTScheduleViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -326,6 +470,7 @@
 				20D9E01E16A8974200393078 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

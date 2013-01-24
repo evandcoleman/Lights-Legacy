@@ -8,9 +8,9 @@
 
 #import "LTAppDelegate.h"
 
-#import "LTFirstViewController.h"
+#import "LTNowViewController.h"
 
-#import "LTSecondViewController.h"
+#import "LTScheduleViewController.h"
 
 @implementation LTAppDelegate
 
@@ -18,8 +18,8 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    UIViewController *viewController1 = [[LTFirstViewController alloc] initWithNibName:@"LTFirstViewController" bundle:nil];
-    UIViewController *viewController2 = [[LTSecondViewController alloc] initWithNibName:@"LTSecondViewController" bundle:nil];
+    UIViewController *viewController1 = [[LTNowViewController alloc] initWithNibName:@"LTNowViewController" bundle:nil];
+    UIViewController *viewController2 = [[LTScheduleViewController alloc] initWithNibName:@"LTScheduleViewController" bundle:nil];
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = @[viewController1, viewController2];
     self.window.rootViewController = self.tabBarController;
