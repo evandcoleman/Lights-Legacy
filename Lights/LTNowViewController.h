@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SRWebSocket.h"
 
-@interface LTNowViewController : UIViewController <SRWebSocketDelegate>
+@interface LTNowViewController : UIViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end

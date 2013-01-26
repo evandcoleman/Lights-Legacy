@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2044E78B16B39D4D001C92F7 /* LTNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2044E78A16B39D4D001C92F7 /* LTNetworkController.m */; };
 		20CA978116AF8EC20099F6F5 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 20CA977A16AF8EC20099F6F5 /* base64.c */; };
 		20CA978216AF8EC20099F6F5 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA977D16AF8EC20099F6F5 /* NSData+SRB64Additions.m */; };
 		20CA978316AF8EC20099F6F5 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA978016AF8EC20099F6F5 /* SRWebSocket.m */; };
@@ -50,6 +51,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2044E78916B39D4D001C92F7 /* LTNetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTNetworkController.h; sourceTree = "<group>"; };
+		2044E78A16B39D4D001C92F7 /* LTNetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTNetworkController.m; sourceTree = "<group>"; };
 		20CA977A16AF8EC20099F6F5 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
 		20CA977B16AF8EC20099F6F5 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
 		20CA977C16AF8EC20099F6F5 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				20D9E03316A89E3000393078 /* ColorPicker */,
 				20D9DFFD16A8974200393078 /* LTAppDelegate.h */,
 				20D9DFFE16A8974200393078 /* LTAppDelegate.m */,
+				2044E78916B39D4D001C92F7 /* LTNetworkController.h */,
+				2044E78A16B39D4D001C92F7 /* LTNetworkController.m */,
 				20D9E00616A8974200393078 /* LTNowViewController.h */,
 				20D9E00716A8974200393078 /* LTNowViewController.m */,
 				20D9E00D16A8974200393078 /* LTScheduleViewController.h */,
@@ -347,6 +352,7 @@
 				20CA978216AF8EC20099F6F5 /* NSData+SRB64Additions.m in Sources */,
 				20CA978316AF8EC20099F6F5 /* SRWebSocket.m in Sources */,
 				20CA979116AF9A3E0099F6F5 /* HashValue.m in Sources */,
+				2044E78B16B39D4D001C92F7 /* LTNetworkController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

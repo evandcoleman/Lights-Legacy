@@ -8,13 +8,15 @@
 
 #import "LTNowViewController.h"
 #import "KZColorPicker.h"
+#import "LTNetworkController.h"
 
 @interface LTNowViewController ()
 
 @property (nonatomic, strong) KZColorPicker *colorPicker;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollVIew;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
-@property (strong, nonatomic) SRWebSocket *socket;
+@property (strong, nonatomic) UITableView *tableView;
+
 
 - (void)pickerChanged:(id)sender;
 
@@ -29,10 +31,12 @@
         self.title = NSLocalizedString(@"Now", @"Now");
         self.tabBarItem.image = [UIImage imageNamed:@"now"];
         self.colorPicker = [[KZColorPicker alloc] initWithFrame:CGRectZero];
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        [(UIControl *)self.colorPicker.alphaSlider setHidden:YES];
         
-        _socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://evancoleman.net:9000/"]]];
-        self.socket.delegate = self;
-        [self.socket open];
+        [[[LTNetworkController sharedInstance] colorPickers] addObject:self.colorPicker];
     }
     return self;
 }
@@ -41,11 +45,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [[LTNetworkController sharedInstance] openConnection];
+    
+    self.scrollView.contentSize = CGSizeMake(640, self.scrollView.frame.size.height);
+    self.tableView.frame = CGRectMake(320.0f, 0, 320.0f, self.scrollView.frame.size.height);
     
     self.colorPicker.frame = self.view.frame;
     self.colorPicker.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 	[self.colorPicker addTarget:self action:@selector(pickerChanged:) forControlEvents:UIControlEventValueChanged];
-	[self.view addSubview:self.colorPicker];
+	[self.scrollView addSubview:self.colorPicker];
+    [self.scrollView addSubview:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,31 +66,47 @@
 #pragma mark - Color Picker
 
 - (void)pickerChanged:(id)sender {
-    CGFloat red = 0.0f; CGFloat green = 0.0f; CGFloat blue = 0.0f; CGFloat alpha = 0.0f;
-    [self.colorPicker.selectedColor getRed:&red green:&green blue:&blue alpha:&alpha];
-    NSString *color = [NSString stringWithFormat:@"solid %0.0f,%0.0f,%0.0f,",red*255,green*255,blue*255];
-    NSLog(@"%@",color);
-    [self.socket send:color];
+    [[LTNetworkController sharedInstance] sendJSONString:[[LTNetworkController sharedInstance] json_solidWithColor:self.colorPicker.selectedColor]];
 }
 
-- (void)webSocketDidOpen:(SRWebSocket *)webSocket {
-    /*NSDictionary *message = @{@"event" : @"subscribe", @"data" : @{@"channel" : @"lights_channel"}};
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:message options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",jsonString);
-    [self.socket send:jsonString];*/
+#pragma mark - Scroll View Delegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.pageControl.currentPage = page;
 }
 
-- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
+#pragma mark - Table View Delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger option = indexPath.row+1;
+    [[LTNetworkController sharedInstance] sendJSONString:[[LTNetworkController sharedInstance] json_animateWithOption:option]];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - Table View Data Source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[[LTNetworkController sharedInstance] animationOptions] count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"CellIdentifier";
     
-}
-
-- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-    NSLog(@"Received: %@",message);
-}
-
-- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    if(cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    cell.textLabel.text = [[[LTNetworkController sharedInstance] animationOptions] objectAtIndex:indexPath.row];
+    
+    return cell;
 }
 
 @end

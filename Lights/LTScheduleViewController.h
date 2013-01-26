@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LTScheduleViewController : UIViewController
+@interface LTScheduleViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end
