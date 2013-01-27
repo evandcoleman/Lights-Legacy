@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2044E78B16B39D4D001C92F7 /* LTNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2044E78A16B39D4D001C92F7 /* LTNetworkController.m */; };
+		2044E79016B3A614001C92F7 /* LTAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2044E78E16B3A614001C92F7 /* LTAddViewController.m */; };
+		2044E79116B3A614001C92F7 /* LTAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2044E78F16B3A614001C92F7 /* LTAddViewController.xib */; };
 		20CA978116AF8EC20099F6F5 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 20CA977A16AF8EC20099F6F5 /* base64.c */; };
 		20CA978216AF8EC20099F6F5 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA977D16AF8EC20099F6F5 /* NSData+SRB64Additions.m */; };
 		20CA978316AF8EC20099F6F5 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA978016AF8EC20099F6F5 /* SRWebSocket.m */; };
@@ -48,11 +50,16 @@
 		20D9E05816A89E3000393078 /* pickerColorWheel.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E04816A89E3000393078 /* pickerColorWheel.png */; };
 		20D9E05916A89E3000393078 /* pickerColorWheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E04916A89E3000393078 /* pickerColorWheel@2x.png */; };
 		20D9E05A16A89E3000393078 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E04B16A89E3000393078 /* UIColor-Expanded.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		20F6D4CC16B493AC002AE977 /* LTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F6D4CA16B493AC002AE977 /* LTTableViewController.m */; };
+		20F6D4D616B4AA7D002AE977 /* LTColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F6D4D416B4AA7C002AE977 /* LTColorPickerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2044E78916B39D4D001C92F7 /* LTNetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTNetworkController.h; sourceTree = "<group>"; };
 		2044E78A16B39D4D001C92F7 /* LTNetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTNetworkController.m; sourceTree = "<group>"; };
+		2044E78D16B3A614001C92F7 /* LTAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAddViewController.h; sourceTree = "<group>"; };
+		2044E78E16B3A614001C92F7 /* LTAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAddViewController.m; sourceTree = "<group>"; };
+		2044E78F16B3A614001C92F7 /* LTAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTAddViewController.xib; sourceTree = "<group>"; };
 		20CA977A16AF8EC20099F6F5 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
 		20CA977B16AF8EC20099F6F5 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
 		20CA977C16AF8EC20099F6F5 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
@@ -113,6 +120,10 @@
 		20D9E04916A89E3000393078 /* pickerColorWheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pickerColorWheel@2x.png"; sourceTree = "<group>"; };
 		20D9E04A16A89E3000393078 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
 		20D9E04B16A89E3000393078 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
+		20F6D4C916B493AC002AE977 /* LTTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTTableViewController.h; sourceTree = "<group>"; };
+		20F6D4CA16B493AC002AE977 /* LTTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTTableViewController.m; sourceTree = "<group>"; };
+		20F6D4D316B4AA7C002AE977 /* LTColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTColorPickerViewController.h; sourceTree = "<group>"; };
+		20F6D4D416B4AA7C002AE977 /* LTColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTColorPickerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,8 +204,15 @@
 				20D9E00716A8974200393078 /* LTNowViewController.m */,
 				20D9E00D16A8974200393078 /* LTScheduleViewController.h */,
 				20D9E00E16A8974200393078 /* LTScheduleViewController.m */,
+				2044E78D16B3A614001C92F7 /* LTAddViewController.h */,
+				2044E78E16B3A614001C92F7 /* LTAddViewController.m */,
+				20F6D4C916B493AC002AE977 /* LTTableViewController.h */,
+				20F6D4CA16B493AC002AE977 /* LTTableViewController.m */,
+				20F6D4D316B4AA7C002AE977 /* LTColorPickerViewController.h */,
+				20F6D4D416B4AA7C002AE977 /* LTColorPickerViewController.m */,
 				20D9E01416A8974200393078 /* LTNowViewController.xib */,
 				20D9E01716A8974200393078 /* LTScheduleViewController.xib */,
+				2044E78F16B3A614001C92F7 /* LTAddViewController.xib */,
 				20D9E01F16A8983000393078 /* Images */,
 				20D9DFF516A8974200393078 /* Supporting Files */,
 			);
@@ -325,6 +343,7 @@
 				20D9E04F16A89E3000393078 /* colorPickerKnob@2x.png in Resources */,
 				20D9E05816A89E3000393078 /* pickerColorWheel.png in Resources */,
 				20D9E05916A89E3000393078 /* pickerColorWheel@2x.png in Resources */,
+				2044E79116B3A614001C92F7 /* LTAddViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +372,9 @@
 				20CA978316AF8EC20099F6F5 /* SRWebSocket.m in Sources */,
 				20CA979116AF9A3E0099F6F5 /* HashValue.m in Sources */,
 				2044E78B16B39D4D001C92F7 /* LTNetworkController.m in Sources */,
+				2044E79016B3A614001C92F7 /* LTAddViewController.m in Sources */,
+				20F6D4CC16B493AC002AE977 /* LTTableViewController.m in Sources */,
+				20F6D4D616B4AA7D002AE977 /* LTColorPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

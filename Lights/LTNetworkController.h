@@ -10,15 +10,10 @@
 #import "SRWebSocket.h"
 
 typedef enum {
-    LTAnimationOptionNone = 0,
-    LTAnimationOptionRainbow = 1,
-    LTAnimationOptionColorWipe = 2
-} LTAnimationOption;
-
-typedef enum {
     LTEventTypeQuery = 0,
     LTEventTypeSolid = 1,
-    LTEventTypeAnimate = 2
+    LTEventTypeAnimateRainbow = 2,
+    LTEventTypeAnimateColorWipe = 3
 } LTEventType;
 
 
@@ -27,6 +22,7 @@ typedef enum {
 @property (strong, nonatomic, readonly) SRWebSocket *socket;
 @property (nonatomic, strong, readonly) NSArray *animationOptions;
 @property (nonatomic, strong, readonly) NSMutableArray *colorPickers;
+@property (nonatomic, strong, readonly) NSMutableArray *schedule;
 
 + (LTNetworkController *)sharedInstance;
 
@@ -36,6 +32,8 @@ typedef enum {
 - (NSString *)jsonStringForDictionary:(NSDictionary *)dict;
 - (NSString *)json_query;
 - (NSString *)json_solidWithColor:(UIColor *)color;
-- (NSString *)json_animateWithOption:(LTAnimationOption)option;
+- (NSString *)json_animateWithOption:(LTEventType)option;
+
+- (void)scheduleEvent:(LTEventType)event date:(NSDate *)date color:(UIColor *)color;
 
 @end

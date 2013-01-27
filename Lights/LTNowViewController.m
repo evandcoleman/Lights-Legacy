@@ -30,8 +30,8 @@
     if (self) {
         self.title = NSLocalizedString(@"Now", @"Now");
         self.tabBarItem.image = [UIImage imageNamed:@"now"];
-        self.colorPicker = [[KZColorPicker alloc] initWithFrame:CGRectZero];
-        self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _colorPicker = [[KZColorPicker alloc] initWithFrame:CGRectZero];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         [(UIControl *)self.colorPicker.alphaSlider setHidden:YES];

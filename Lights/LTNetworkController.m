@@ -15,6 +15,7 @@ static LTNetworkController *_sharedInstance = nil;
 @property (strong, nonatomic) SRWebSocket *socket;
 @property (nonatomic, strong) NSArray *animationOptions;
 @property (nonatomic, strong) NSMutableArray *colorPickers;
+@property (nonatomic, strong) NSMutableArray *schedule;
 
 @end
 
@@ -31,6 +32,7 @@ static LTNetworkController *_sharedInstance = nil;
     self = [super init];
     if(self) {
         self.colorPickers = [NSMutableArray array];
+        self.schedule = [NSMutableArray array];
         self.animationOptions = @[@"Rainbow", @"Color Wipe"];
         
         _socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://evancoleman.net:9000/"]]];
@@ -42,13 +44,18 @@ static LTNetworkController *_sharedInstance = nil;
 - (void)openConnection {
     if(self.socket.readyState == SR_OPEN) {
         [self.socket send:[self json_query]];
-    } else if(self.socket.readyState == SR_CLOSED || self.socket.readyState == SR_CLOSING || self.socket.readyState == SR_CONNECTING) {
+    } else if(self.socket.readyState == SR_CLOSED || self.socket.readyState == SR_CLOSING/* || self.socket.readyState == SR_CONNECTING*/) {
         [self.socket open];
     }
 }
 
 - (void)sendJSONString:(NSString *)message {
     [self.socket send:message];
+}
+
+- (void)scheduleEvent:(LTEventType)event date:(NSDate *)date color:(UIColor *)color {
+    NSDictionary *dict = @{@"event" : [NSNumber numberWithInt:event], @"date" : date, @"color" : color};
+    [self.schedule addObject:dict];
 }
 
 #pragma mark - JSON Strings
@@ -72,8 +79,8 @@ static LTNetworkController *_sharedInstance = nil;
     return [self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:LTEventTypeSolid], @"color" : @[r, g, b]}];
 }
 
-- (NSString *)json_animateWithOption:(LTAnimationOption)option {
-    return [self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:LTEventTypeAnimate], @"option" : [NSNumber numberWithInt:option]}];
+- (NSString *)json_animateWithOption:(LTEventType)option {
+    return [self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:option]}];
 }
 
 #pragma mark - SocketRocket Delegate

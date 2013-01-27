@@ -8,10 +8,14 @@
 
 #import "LTScheduleViewController.h"
 #import "LTNetworkController.h"
+#import "LTAddViewController.h"
 
 @interface LTScheduleViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+- (IBAction)addItem:(id)sender;
+- (IBAction)edit:(id)sender;
 
 @end
 
@@ -40,11 +44,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)addItem:(id)sender {
+    LTAddViewController *add = [[LTAddViewController alloc] initWithNibName:@"LTAddViewController" bundle:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:add];
+    [self presentViewController:nav animated:YES completion:^(void) {
+        [self.tableView reloadData];
+    }];
+}
+
+- (IBAction)edit:(id)sender {
+    
+}
+
 #pragma mark - Table View Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger option = indexPath.row+1;
-    [[LTNetworkController sharedInstance] sendJSONString:[[LTNetworkController sharedInstance] json_animateWithOption:option]];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -55,7 +70,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[LTNetworkController sharedInstance] animationOptions] count];
+    return [[[LTNetworkController sharedInstance] schedule] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
