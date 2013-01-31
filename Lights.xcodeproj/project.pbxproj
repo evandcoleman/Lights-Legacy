@@ -52,6 +52,9 @@
 		20D9E05A16A89E3000393078 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E04B16A89E3000393078 /* UIColor-Expanded.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		20F6D4CC16B493AC002AE977 /* LTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F6D4CA16B493AC002AE977 /* LTTableViewController.m */; };
 		20F6D4D616B4AA7D002AE977 /* LTColorPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F6D4D416B4AA7C002AE977 /* LTColorPickerViewController.m */; };
+		20F6D4DA16B4C875002AE977 /* LTScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F6D4D916B4C875002AE977 /* LTScheduleCell.m */; };
+		20F6D4DC16B4C896002AE977 /* LTScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F6D4DB16B4C896002AE977 /* LTScheduleCell.xib */; };
+		20F6D4EF16B4D005002AE977 /* ShadowedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F6D4EE16B4D004002AE977 /* ShadowedTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +127,11 @@
 		20F6D4CA16B493AC002AE977 /* LTTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTTableViewController.m; sourceTree = "<group>"; };
 		20F6D4D316B4AA7C002AE977 /* LTColorPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTColorPickerViewController.h; sourceTree = "<group>"; };
 		20F6D4D416B4AA7C002AE977 /* LTColorPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTColorPickerViewController.m; sourceTree = "<group>"; };
+		20F6D4D816B4C875002AE977 /* LTScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTScheduleCell.h; sourceTree = "<group>"; };
+		20F6D4D916B4C875002AE977 /* LTScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTScheduleCell.m; sourceTree = "<group>"; };
+		20F6D4DB16B4C896002AE977 /* LTScheduleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTScheduleCell.xib; sourceTree = "<group>"; };
+		20F6D4ED16B4D004002AE977 /* ShadowedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShadowedTableView.h; sourceTree = "<group>"; };
+		20F6D4EE16B4D004002AE977 /* ShadowedTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShadowedTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +202,8 @@
 		20D9DFF416A8974200393078 /* Lights */ = {
 			isa = PBXGroup;
 			children = (
+				20F6D4ED16B4D004002AE977 /* ShadowedTableView.h */,
+				20F6D4EE16B4D004002AE977 /* ShadowedTableView.m */,
 				20CA977916AF8EC20099F6F5 /* SocketRocket */,
 				20D9E03316A89E3000393078 /* ColorPicker */,
 				20D9DFFD16A8974200393078 /* LTAppDelegate.h */,
@@ -210,9 +220,12 @@
 				20F6D4CA16B493AC002AE977 /* LTTableViewController.m */,
 				20F6D4D316B4AA7C002AE977 /* LTColorPickerViewController.h */,
 				20F6D4D416B4AA7C002AE977 /* LTColorPickerViewController.m */,
+				20F6D4D816B4C875002AE977 /* LTScheduleCell.h */,
+				20F6D4D916B4C875002AE977 /* LTScheduleCell.m */,
 				20D9E01416A8974200393078 /* LTNowViewController.xib */,
 				20D9E01716A8974200393078 /* LTScheduleViewController.xib */,
 				2044E78F16B3A614001C92F7 /* LTAddViewController.xib */,
+				20F6D4DB16B4C896002AE977 /* LTScheduleCell.xib */,
 				20D9E01F16A8983000393078 /* Images */,
 				20D9DFF516A8974200393078 /* Supporting Files */,
 			);
@@ -344,6 +357,7 @@
 				20D9E05816A89E3000393078 /* pickerColorWheel.png in Resources */,
 				20D9E05916A89E3000393078 /* pickerColorWheel@2x.png in Resources */,
 				2044E79116B3A614001C92F7 /* LTAddViewController.xib in Resources */,
+				20F6D4DC16B4C896002AE977 /* LTScheduleCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +389,8 @@
 				2044E79016B3A614001C92F7 /* LTAddViewController.m in Sources */,
 				20F6D4CC16B493AC002AE977 /* LTTableViewController.m in Sources */,
 				20F6D4D616B4AA7D002AE977 /* LTColorPickerViewController.m in Sources */,
+				20F6D4DA16B4C875002AE977 /* LTScheduleCell.m in Sources */,
+				20F6D4EF16B4D005002AE977 /* ShadowedTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

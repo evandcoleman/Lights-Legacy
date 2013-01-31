@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "LTTableViewController.h"
 
+@protocol LTAddViewControllerDelegate <NSObject>
+
+- (void)didScheduleEvent;
+
+@end
+
 @interface LTAddViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, LTTableViewControllerDelegate>
+
+@property (nonatomic, weak) id<LTAddViewControllerDelegate> delegate;
 
 @end

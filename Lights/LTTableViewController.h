@@ -18,6 +18,6 @@
 
 @property (nonatomic, strong) NSArray *data;
 @property (nonatomic, strong) NSMutableArray *selectedIndexes;
-@property (nonatomic, strong) id<LTTableViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<LTTableViewControllerDelegate> delegate;
 
 @end

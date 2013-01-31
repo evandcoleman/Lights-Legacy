@@ -37,6 +37,7 @@ static LTNetworkController *_sharedInstance = nil;
         
         _socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://evancoleman.net:9000/"]]];
         self.socket.delegate = self;
+        [self.socket open];
     }
     return self;
 }
@@ -44,7 +45,7 @@ static LTNetworkController *_sharedInstance = nil;
 - (void)openConnection {
     if(self.socket.readyState == SR_OPEN) {
         [self.socket send:[self json_query]];
-    } else if(self.socket.readyState == SR_CLOSED || self.socket.readyState == SR_CLOSING/* || self.socket.readyState == SR_CONNECTING*/) {
+    } else if((self.socket.readyState == SR_CLOSED || self.socket.readyState == SR_CLOSING) && self.socket.readyState != SR_CONNECTING) {
         [self.socket open];
     }
 }
@@ -53,9 +54,10 @@ static LTNetworkController *_sharedInstance = nil;
     [self.socket send:message];
 }
 
-- (void)scheduleEvent:(LTEventType)event date:(NSDate *)date color:(UIColor *)color {
-    NSDictionary *dict = @{@"event" : [NSNumber numberWithInt:event], @"date" : date, @"color" : color};
+- (void)scheduleEvent:(LTEventType)event date:(NSDate *)date color:(UIColor *)color repeat:(NSArray *)repeat {
+    NSDictionary *dict = @{@"event" : [NSNumber numberWithInt:event], @"date" : date, @"color" : color, @"repeat" : repeat};
     [self.schedule addObject:dict];
+    [self sendJSONString:[self json_scheduleEvent:dict]];
 }
 
 #pragma mark - JSON Strings
@@ -68,6 +70,10 @@ static LTNetworkController *_sharedInstance = nil;
 
 - (NSString *)json_query {
     return [self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:LTEventTypeQuery]}];
+}
+
+- (NSString *)json_querySchedule {
+    return [self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:LTEventTypeQuerySchedule]}];
 }
 
 - (NSString *)json_solidWithColor:(UIColor *)color {
@@ -83,6 +89,29 @@ static LTNetworkController *_sharedInstance = nil;
     return [self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:option]}];
 }
 
+- (NSString *)json_scheduleEvent:(NSDictionary *)dict {
+    CGFloat red = 0.0f; CGFloat green = 0.0f; CGFloat blue = 0.0f; CGFloat alpha = 0.0f;
+    [[dict objectForKey:@"color"] getRed:&red green:&green blue:&blue alpha:&alpha];
+    NSNumber *r = [NSNumber numberWithInt:red*255];
+    NSNumber *g = [NSNumber numberWithInt:green*255];
+    NSNumber *b = [NSNumber numberWithInt:blue*255];
+    NSMutableDictionary *message = [NSMutableDictionary dictionary];
+    [message setObject:@[r, g, b] forKey:@"color"];
+    [message setObject:[dict objectForKey:@"event"] forKey:@"event"];
+    [message setObject:[NSNumber numberWithDouble:[[dict objectForKey:@"date"] timeIntervalSince1970]] forKey:@"time"];
+    NSMutableString *repeat = [NSMutableString string];
+    for(NSNumber *a in [dict objectForKey:@"repeat"]) {
+        [repeat appendFormat:@",%i",([a integerValue]+1)];
+    }
+    if([repeat hasPrefix:@","]) {
+        [message setObject:[repeat substringFromIndex:1] forKey:@"repeat"];
+    } else {
+        [message setObject:repeat forKey:@"repeat"];
+    }
+    [message setObject:[[NSTimeZone localTimeZone] name] forKey:@"timeZone"];
+    return [self jsonStringForDictionary:message];
+}
+
 #pragma mark - SocketRocket Delegate
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
@@ -94,7 +123,7 @@ static LTNetworkController *_sharedInstance = nil;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
-    NSLog(@"Received: %@",message);
+    //NSLog(@"Received: %@",message);
     if([message hasPrefix:@"currentState"]) {
         NSString *command  = [message stringByReplacingOccurrencesOfString:@"currentState: " withString:@""];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[command dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
@@ -102,6 +131,13 @@ static LTNetworkController *_sharedInstance = nil;
             NSArray *rgb = [dict objectForKey:@"color"];
             UIColor *color = [UIColor colorWithRed:[[rgb objectAtIndex:0] floatValue]/255.0f green:[[rgb objectAtIndex:1] floatValue]/255.0f blue:[[rgb objectAtIndex:2] floatValue]/255.0f alpha:1.0f];
             [self.colorPickers makeObjectsPerformSelector:@selector(setSelectedColor:) withObject:color];
+        }
+    } else {
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[message dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
+        if([[dict objectForKey:@"event"] integerValue] == LTEventTypeQuerySchedule) {
+            if(self.delegate != nil) {
+                [self.delegate networkController:self receivedMessage:dict];
+            }
         }
     }
 }

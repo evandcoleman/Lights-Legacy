@@ -24,6 +24,7 @@
 @property (nonatomic, strong) UIColor *colorOption;
 
 - (void)done:(id)sender;
+- (void)cancel:(id)sender;
 
 @end
 
@@ -41,6 +42,7 @@
         
         self.eventOption = LTEventTypeSolid;
         self.colorOption = [UIColor redColor];
+        self.repeatOption = [NSArray array];
     }
     return self;
 }
@@ -49,10 +51,20 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(done:)];
     self.navigationItem.rightBarButtonItem = done;
     
+    UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancel:)];
+    self.navigationItem.leftBarButtonItem = cancel;
+    
     self.title = @"Add";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    NSTimeInterval time = round([[NSDate date] timeIntervalSinceReferenceDate] / 60.0) * 60.0;
+    NSDate *minute = [NSDate dateWithTimeIntervalSinceReferenceDate:time];
+    self.datePicker.date = minute;
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,8 +74,17 @@
 }
 
 - (void)done:(id)sender {
+    NSDate *date = self.datePicker.date;
+    if([date timeIntervalSinceNow] < 0) {
+        date = [date dateByAddingTimeInterval:(3600*24)];
+    }
     
-    //[[LTNetworkController sharedInstance] scheduleEvent:<#(LTEventType)#> animation:<#(LTAnimationOption)#> date:<#(NSDate *)#> color:<#(UIColor *)#>]
+    [[LTNetworkController sharedInstance] scheduleEvent:self.eventOption date:date color:self.colorOption repeat:self.repeatOption];
+    [self.delegate didScheduleEvent];
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -97,7 +118,7 @@
     if([selection isKindOfClass:[NSArray class]]) {
         self.repeatOption = selection;
     } else if([selection isKindOfClass:[NSNumber class]]) {
-        self.eventOption = [selection intValue];
+        self.eventOption = ([selection intValue] + 1);
     } else if([selection isKindOfClass:[UIColor class]]) {
         self.colorOption = selection;
     }
@@ -145,7 +166,7 @@
         cell.detailTextLabel.text = detail;
     } else if(indexPath.row == 1) {
         cell.textLabel.text = @"Event";
-        cell.detailTextLabel.text = [self.events objectAtIndex:self.eventOption];
+        cell.detailTextLabel.text = [self.events objectAtIndex:(self.eventOption - 1)];
     } else if(indexPath.row == 2) {
         cell.textLabel.text = @"Color";
         cell.textLabel.textColor = self.colorOption;

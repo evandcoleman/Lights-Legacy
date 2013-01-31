@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LTAddViewController.h"
+#import "LTNetworkController.h"
 
-@interface LTScheduleViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface LTScheduleViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, LTAddViewControllerDelegate, LTNetworkControllerDelegate>
 
 @end

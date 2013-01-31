@@ -13,9 +13,16 @@ typedef enum {
     LTEventTypeQuery = 0,
     LTEventTypeSolid = 1,
     LTEventTypeAnimateRainbow = 2,
-    LTEventTypeAnimateColorWipe = 3
+    LTEventTypeAnimateColorWipe = 3,
+    LTEventTypeQuerySchedule = 4
 } LTEventType;
 
+@class LTNetworkController;
+
+@protocol LTNetworkControllerDelegate <NSObject>
+@required
+- (void)networkController:(LTNetworkController *)controller receivedMessage:(NSDictionary *)message;
+@end
 
 @interface LTNetworkController : NSObject <SRWebSocketDelegate>
 
@@ -24,6 +31,8 @@ typedef enum {
 @property (nonatomic, strong, readonly) NSMutableArray *colorPickers;
 @property (nonatomic, strong, readonly) NSMutableArray *schedule;
 
+@property (nonatomic, weak) id<LTNetworkControllerDelegate> delegate;
+
 + (LTNetworkController *)sharedInstance;
 
 - (void)openConnection;
@@ -31,9 +40,11 @@ typedef enum {
 
 - (NSString *)jsonStringForDictionary:(NSDictionary *)dict;
 - (NSString *)json_query;
+- (NSString *)json_querySchedule;
 - (NSString *)json_solidWithColor:(UIColor *)color;
 - (NSString *)json_animateWithOption:(LTEventType)option;
+- (NSString *)json_scheduleEvent:(NSDictionary *)dict;
 
-- (void)scheduleEvent:(LTEventType)event date:(NSDate *)date color:(UIColor *)color;
+- (void)scheduleEvent:(LTEventType)event date:(NSDate *)date color:(UIColor *)color repeat:(NSArray *)repeat;
 
 @end

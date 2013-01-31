@@ -80,7 +80,7 @@
 #pragma mark - Table View Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger option = indexPath.row+1;
+    NSInteger option = indexPath.row+2;
     [[LTNetworkController sharedInstance] sendJSONString:[[LTNetworkController sharedInstance] json_animateWithOption:option]];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
