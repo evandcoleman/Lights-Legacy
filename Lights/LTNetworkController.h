@@ -14,7 +14,8 @@ typedef enum {
     LTEventTypeSolid = 1,
     LTEventTypeAnimateRainbow = 2,
     LTEventTypeAnimateColorWipe = 3,
-    LTEventTypeQuerySchedule = 4
+    LTEventTypeQuerySchedule = 4,
+    LTEventTypeFlushEvents = 5
 } LTEventType;
 
 @class LTNetworkController;
@@ -46,5 +47,6 @@ typedef enum {
 - (NSString *)json_scheduleEvent:(NSDictionary *)dict;
 
 - (void)scheduleEvent:(LTEventType)event date:(NSDate *)date color:(UIColor *)color repeat:(NSArray *)repeat;
+- (void)scheduleEdited;
 
 @end

@@ -17,6 +17,8 @@ static LTNetworkController *_sharedInstance = nil;
 @property (nonatomic, strong) NSMutableArray *colorPickers;
 @property (nonatomic, strong) NSMutableArray *schedule;
 
+- (void)flushScheduledEvents;
+
 @end
 
 @implementation LTNetworkController
@@ -58,6 +60,19 @@ static LTNetworkController *_sharedInstance = nil;
     NSDictionary *dict = @{@"event" : [NSNumber numberWithInt:event], @"date" : date, @"color" : color, @"repeat" : repeat};
     [self.schedule addObject:dict];
     [self sendJSONString:[self json_scheduleEvent:dict]];
+}
+
+- (void)scheduleEdited {
+    [self flushScheduledEvents];
+    for(NSDictionary *dict in self.schedule) {
+        [self sendJSONString:[self json_scheduleEvent:dict]];
+    }
+}
+
+#pragma mark - Private Methods
+
+- (void)flushScheduledEvents {
+    [self.socket send:[self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:LTEventTypeFlushEvents]}]];
 }
 
 #pragma mark - JSON Strings
@@ -109,6 +124,8 @@ static LTNetworkController *_sharedInstance = nil;
         [message setObject:repeat forKey:@"repeat"];
     }
     [message setObject:[[NSTimeZone localTimeZone] name] forKey:@"timeZone"];
+    if([dict objectForKey:@"state"])
+        [message setObject:[dict objectForKey:@"state"] forKey:@"state"];
     return [self jsonStringForDictionary:message];
 }
 

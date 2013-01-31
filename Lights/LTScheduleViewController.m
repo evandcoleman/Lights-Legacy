@@ -104,7 +104,13 @@
     NSMutableDictionary *dict = [[[LTNetworkController sharedInstance] schedule] objectAtIndex:sender.tag];
     [dict setObject:[NSNumber numberWithBool:sender.on] forKey:@"state"];
     
-    //handle editing remote events (maybe just delete all and send again), or give unique id
+    NSDate *date = [dict objectForKey:@"date"];
+    if([date timeIntervalSinceNow] < 0 && sender.on == YES) {
+        NSDate *newDate = [date dateByAddingTimeInterval:3600*24];
+        [dict setObject:newDate forKey:@"date"];
+    }
+    
+    [[LTNetworkController sharedInstance] scheduleEdited];
 }
 
 #pragma mark - Table View Delegate
@@ -114,6 +120,14 @@
 }
 
 #pragma mark - Table View Data Source
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [[[LTNetworkController sharedInstance] schedule] removeObjectAtIndex:indexPath.row];
+        [[LTNetworkController sharedInstance] scheduleEdited];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -153,6 +167,9 @@
     [df setTimeStyle:NSDateFormatterShortStyle];
     [df setTimeZone:[NSTimeZone localTimeZone]];
     cell.timeLabel.text = [df stringFromDate:[data objectForKey:@"date"]];
+    
+    [df setDateStyle:NSDateFormatterFullStyle];
+    NSLog(@"Event Will Run On %@",[df stringFromDate:[data objectForKey:@"date"]]);
 
     NSArray *days = @[@"Sun",@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat"];
     NSMutableString *str = [NSMutableString string];
@@ -183,6 +200,10 @@
     }
     [cell.toggleSwitch addTarget:self action:@selector(toggle:) forControlEvents:UIControlEventValueChanged];
     cell.toggleSwitch.tag = indexPath.row;
+    
+    if([data objectForKey:@"state"]) {
+        cell.toggleSwitch.on = [[data objectForKey:@"state"] boolValue];
+    }
     
     return cell;
 }
