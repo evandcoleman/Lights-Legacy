@@ -87,7 +87,7 @@
         NSMutableArray *newDays = [NSMutableArray array];
         for(NSString *a in days) {
             if([a integerValue] > 0)
-                [newDays addObject:[NSNumber numberWithInteger:[a integerValue] - 1]];
+                [newDays addObject:[NSNumber numberWithInteger:[a integerValue]]];
         }
         [mut setObject:newDays forKey:@"repeat"];
         [mut setObject:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:@"time"] doubleValue]] forKey:@"date"];

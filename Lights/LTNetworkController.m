@@ -116,7 +116,7 @@ static LTNetworkController *_sharedInstance = nil;
     [message setObject:[NSNumber numberWithDouble:[[dict objectForKey:@"date"] timeIntervalSince1970]] forKey:@"time"];
     NSMutableString *repeat = [NSMutableString string];
     for(NSNumber *a in [dict objectForKey:@"repeat"]) {
-        [repeat appendFormat:@",%i",([a integerValue]+1)];
+        [repeat appendFormat:@",%i",([a integerValue])];
     }
     if([repeat hasPrefix:@","]) {
         [message setObject:[repeat substringFromIndex:1] forKey:@"repeat"];
@@ -124,8 +124,11 @@ static LTNetworkController *_sharedInstance = nil;
         [message setObject:repeat forKey:@"repeat"];
     }
     [message setObject:[[NSTimeZone localTimeZone] name] forKey:@"timeZone"];
-    if([dict objectForKey:@"state"])
+    if([dict objectForKey:@"state"] != nil) {
         [message setObject:[dict objectForKey:@"state"] forKey:@"state"];
+    } else {
+        [message setObject:[NSNumber numberWithBool:YES] forKey:@"state"];
+    }
     return [self jsonStringForDictionary:message];
 }
 
