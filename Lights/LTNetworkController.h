@@ -37,6 +37,8 @@ typedef enum {
 + (LTNetworkController *)sharedInstance;
 
 - (void)openConnection;
+- (void)closeConnection;
+- (void)reconnect;
 - (void)sendJSONString:(NSString *)message;
 
 - (NSString *)jsonStringForDictionary:(NSDictionary *)dict;

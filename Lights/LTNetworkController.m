@@ -37,9 +37,6 @@ static LTNetworkController *_sharedInstance = nil;
         self.schedule = [NSMutableArray array];
         self.animationOptions = @[@"Rainbow", @"Color Wipe"];
         
-        _socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://evancoleman.net:9000/"]]];
-        self.socket.delegate = self;
-        [self.socket open];
     }
     return self;
 }
@@ -49,6 +46,20 @@ static LTNetworkController *_sharedInstance = nil;
         [self.socket send:[self json_query]];
     } else if((self.socket.readyState == SR_CLOSED || self.socket.readyState == SR_CLOSING) && self.socket.readyState != SR_CONNECTING) {
         [self.socket open];
+    }
+}
+
+- (void)reconnect {
+    self.socket = nil;
+    _socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://evancoleman.net:9000/"]]];
+    self.socket.delegate = self;
+    [self.socket open];
+}
+
+- (void)closeConnection {
+    if(self.socket.readyState == SR_OPEN) {
+        [self.socket closeWithCode:100 reason:@"App"];
+        self.socket = nil;
     }
 }
 
@@ -139,7 +150,7 @@ static LTNetworkController *_sharedInstance = nil;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
-    
+    NSLog(@"%@",error);
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
