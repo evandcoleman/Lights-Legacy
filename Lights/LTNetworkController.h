@@ -31,6 +31,7 @@ typedef enum {
 @property (nonatomic, strong, readonly) NSArray *animationOptions;
 @property (nonatomic, strong, readonly) NSMutableArray *colorPickers;
 @property (nonatomic, strong, readonly) NSMutableArray *schedule;
+@property (nonatomic, strong) NSString *server;
 
 @property (nonatomic, weak) id<LTNetworkControllerDelegate> delegate;
 

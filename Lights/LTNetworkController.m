@@ -7,6 +7,7 @@
 //
 
 #import "LTNetworkController.h"
+#import "LTAppDelegate.h"
 
 static LTNetworkController *_sharedInstance = nil;
 
@@ -37,23 +38,29 @@ static LTNetworkController *_sharedInstance = nil;
         self.schedule = [NSMutableArray array];
         self.animationOptions = @[@"Rainbow", @"Color Wipe"];
         
+        self.server = [[NSUserDefaults standardUserDefaults] objectForKey:@"LTServerKey"];
+        [[[[[(LTAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] viewControllers] lastObject] tabBarItem] setBadgeValue:@""];
     }
     return self;
 }
 
 - (void)openConnection {
-    if(self.socket.readyState == SR_OPEN) {
-        [self.socket send:[self json_query]];
-    } else if((self.socket.readyState == SR_CLOSED || self.socket.readyState == SR_CLOSING) && self.socket.readyState != SR_CONNECTING) {
-        [self.socket open];
+    if(self.server) {
+        if(self.socket.readyState == SR_OPEN) {
+            [self.socket send:[self json_query]];
+        } else if((self.socket.readyState == SR_CLOSED || self.socket.readyState == SR_CLOSING) && self.socket.readyState != SR_CONNECTING) {
+            [self.socket open];
+        }
     }
 }
 
 - (void)reconnect {
-    self.socket = nil;
-    _socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://evancoleman.net:9000/"]]];
-    self.socket.delegate = self;
-    [self.socket open];
+    if(self.server) {
+        self.socket = nil;
+        _socket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.server]]]];
+        self.socket.delegate = self;
+        [self.socket open];
+    }
 }
 
 - (void)closeConnection {
@@ -147,10 +154,12 @@ static LTNetworkController *_sharedInstance = nil;
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
     [webSocket send:[self json_query]];
+    [[[[[(LTAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] viewControllers] lastObject] tabBarItem] setBadgeValue:nil];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
     NSLog(@"%@",error);
+    [[[[[(LTAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] viewControllers] lastObject] tabBarItem] setBadgeValue:@""];
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message {
@@ -174,7 +183,7 @@ static LTNetworkController *_sharedInstance = nil;
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
-    
+    [[[[[(LTAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] viewControllers] lastObject] tabBarItem] setBadgeValue:@""];
 }
 
 @end

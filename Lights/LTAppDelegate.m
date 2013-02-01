@@ -9,7 +9,7 @@
 #import "LTAppDelegate.h"
 
 #import "LTNowViewController.h"
-
+#import "LTSettingsViewController.h"
 #import "LTScheduleViewController.h"
 #import "LTNetworkController.h"
 
@@ -21,10 +21,12 @@
     // Override point for customization after application launch.
     UIViewController *viewController1 = [[LTNowViewController alloc] initWithNibName:@"LTNowViewController" bundle:nil];
     UIViewController *viewController2 = [[LTScheduleViewController alloc] initWithNibName:@"LTScheduleViewController" bundle:nil];
+    UIViewController *viewController3 = [[LTSettingsViewController alloc] initWithNibName:@"LTSettingsViewController" bundle:nil];
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[viewController1, viewController2];
+    self.tabBarController.viewControllers = @[viewController1, viewController2, viewController3];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

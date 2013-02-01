@@ -10,6 +10,10 @@
 		2044E78B16B39D4D001C92F7 /* LTNetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2044E78A16B39D4D001C92F7 /* LTNetworkController.m */; };
 		2044E79016B3A614001C92F7 /* LTAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2044E78E16B3A614001C92F7 /* LTAddViewController.m */; };
 		2044E79116B3A614001C92F7 /* LTAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2044E78F16B3A614001C92F7 /* LTAddViewController.xib */; };
+		207ABCD416BB637E003F9602 /* LTSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 207ABCD216BB637E003F9602 /* LTSettingsViewController.m */; };
+		207ABCD516BB637E003F9602 /* LTSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 207ABCD316BB637E003F9602 /* LTSettingsViewController.xib */; };
+		207ABCD816BB63B6003F9602 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 207ABCD616BB63B6003F9602 /* gear.png */; };
+		207ABCD916BB63B6003F9602 /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 207ABCD716BB63B6003F9602 /* gear@2x.png */; };
 		20CA978116AF8EC20099F6F5 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 20CA977A16AF8EC20099F6F5 /* base64.c */; };
 		20CA978216AF8EC20099F6F5 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA977D16AF8EC20099F6F5 /* NSData+SRB64Additions.m */; };
 		20CA978316AF8EC20099F6F5 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA978016AF8EC20099F6F5 /* SRWebSocket.m */; };
@@ -63,6 +67,11 @@
 		2044E78D16B3A614001C92F7 /* LTAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTAddViewController.h; sourceTree = "<group>"; };
 		2044E78E16B3A614001C92F7 /* LTAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTAddViewController.m; sourceTree = "<group>"; };
 		2044E78F16B3A614001C92F7 /* LTAddViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTAddViewController.xib; sourceTree = "<group>"; };
+		207ABCD116BB637E003F9602 /* LTSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSettingsViewController.h; sourceTree = "<group>"; };
+		207ABCD216BB637E003F9602 /* LTSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSettingsViewController.m; sourceTree = "<group>"; };
+		207ABCD316BB637E003F9602 /* LTSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTSettingsViewController.xib; sourceTree = "<group>"; };
+		207ABCD616BB63B6003F9602 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
+		207ABCD716BB63B6003F9602 /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear@2x.png"; sourceTree = "<group>"; };
 		20CA977A16AF8EC20099F6F5 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
 		20CA977B16AF8EC20099F6F5 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
 		20CA977C16AF8EC20099F6F5 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
@@ -214,6 +223,8 @@
 				20D9E00716A8974200393078 /* LTNowViewController.m */,
 				20D9E00D16A8974200393078 /* LTScheduleViewController.h */,
 				20D9E00E16A8974200393078 /* LTScheduleViewController.m */,
+				207ABCD116BB637E003F9602 /* LTSettingsViewController.h */,
+				207ABCD216BB637E003F9602 /* LTSettingsViewController.m */,
 				2044E78D16B3A614001C92F7 /* LTAddViewController.h */,
 				2044E78E16B3A614001C92F7 /* LTAddViewController.m */,
 				20F6D4C916B493AC002AE977 /* LTTableViewController.h */,
@@ -224,6 +235,7 @@
 				20F6D4D916B4C875002AE977 /* LTScheduleCell.m */,
 				20D9E01416A8974200393078 /* LTNowViewController.xib */,
 				20D9E01716A8974200393078 /* LTScheduleViewController.xib */,
+				207ABCD316BB637E003F9602 /* LTSettingsViewController.xib */,
 				2044E78F16B3A614001C92F7 /* LTAddViewController.xib */,
 				20F6D4DB16B4C896002AE977 /* LTScheduleCell.xib */,
 				20D9E01F16A8983000393078 /* Images */,
@@ -249,6 +261,8 @@
 		20D9E01F16A8983000393078 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				207ABCD616BB63B6003F9602 /* gear.png */,
+				207ABCD716BB63B6003F9602 /* gear@2x.png */,
 				20D9E02416A8988400393078 /* now.png */,
 				20D9E02516A8988400393078 /* now@2x.png */,
 				20D9E02016A8983A00393078 /* schedule.png */,
@@ -358,6 +372,9 @@
 				20D9E05916A89E3000393078 /* pickerColorWheel@2x.png in Resources */,
 				2044E79116B3A614001C92F7 /* LTAddViewController.xib in Resources */,
 				20F6D4DC16B4C896002AE977 /* LTScheduleCell.xib in Resources */,
+				207ABCD516BB637E003F9602 /* LTSettingsViewController.xib in Resources */,
+				207ABCD816BB63B6003F9602 /* gear.png in Resources */,
+				207ABCD916BB63B6003F9602 /* gear@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +408,7 @@
 				20F6D4D616B4AA7D002AE977 /* LTColorPickerViewController.m in Sources */,
 				20F6D4DA16B4C875002AE977 /* LTScheduleCell.m in Sources */,
 				20F6D4EF16B4D005002AE977 /* ShadowedTableView.m in Sources */,
+				207ABCD416BB637E003F9602 /* LTSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
