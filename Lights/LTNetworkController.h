@@ -15,7 +15,8 @@ typedef enum {
     LTEventTypeAnimateRainbow = 2,
     LTEventTypeAnimateColorWipe = 3,
     LTEventTypeQuerySchedule = 4,
-    LTEventTypeFlushEvents = 5
+    LTEventTypeFlushEvents = 5,
+    LTEventTypeAnimateRainbowCycle = 6
 } LTEventType;
 
 @class LTNetworkController;
@@ -29,6 +30,7 @@ typedef enum {
 
 @property (strong, nonatomic, readonly) SRWebSocket *socket;
 @property (nonatomic, strong, readonly) NSArray *animationOptions;
+@property (nonatomic, strong, readonly) NSArray *animationIndexes;
 @property (nonatomic, strong, readonly) NSMutableArray *colorPickers;
 @property (nonatomic, strong, readonly) NSMutableArray *schedule;
 @property (nonatomic, strong) NSString *server;

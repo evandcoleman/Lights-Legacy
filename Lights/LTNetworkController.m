@@ -15,6 +15,7 @@ static LTNetworkController *_sharedInstance = nil;
 
 @property (strong, nonatomic) SRWebSocket *socket;
 @property (nonatomic, strong) NSArray *animationOptions;
+@property (nonatomic, strong) NSArray *animationIndexes;
 @property (nonatomic, strong) NSMutableArray *colorPickers;
 @property (nonatomic, strong) NSMutableArray *schedule;
 
@@ -36,7 +37,8 @@ static LTNetworkController *_sharedInstance = nil;
     if(self) {
         self.colorPickers = [NSMutableArray array];
         self.schedule = [NSMutableArray array];
-        self.animationOptions = @[@"Rainbow", @"Color Wipe"];
+        self.animationOptions = @[@"Rainbow", @"Rainbow Cycle", @"Color Wipe"];
+        self.animationIndexes = @[[NSNumber numberWithInt:LTEventTypeAnimateRainbow], [NSNumber numberWithInt:LTEventTypeAnimateRainbowCycle], [NSNumber numberWithInt:LTEventTypeAnimateColorWipe]];
         
         self.server = [[NSUserDefaults standardUserDefaults] objectForKey:@"LTServerKey"];
         [[[[[(LTAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] viewControllers] lastObject] tabBarItem] setBadgeValue:@""];

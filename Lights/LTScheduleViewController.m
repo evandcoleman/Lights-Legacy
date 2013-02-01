@@ -175,7 +175,7 @@
     cell.timeLabel.text = [df stringFromDate:[data objectForKey:@"date"]];
     
     [df setDateStyle:NSDateFormatterFullStyle];
-    NSLog(@"Event Will Run On %@",[df stringFromDate:[data objectForKey:@"date"]]);
+    //NSLog(@"Event Will Run On %@",[df stringFromDate:[data objectForKey:@"date"]]);
 
     NSArray *days = @[@"Sun",@"Mon",@"Tue",@"Wed",@"Thu",@"Fri",@"Sat"];
     NSMutableString *str = [NSMutableString string];
@@ -194,7 +194,9 @@
     
     NSArray *nonAnim = @[@"Solid"];
     NSArray *events = [nonAnim arrayByAddingObjectsFromArray:[[LTNetworkController sharedInstance] animationOptions]];
-    cell.eventLabel.text = [events objectAtIndex:([[data objectForKey:@"event"] intValue] - 1)];
+    NSArray *indexes = [@[[NSNumber numberWithInt:LTEventTypeSolid]] arrayByAddingObjectsFromArray:[[LTNetworkController sharedInstance] animationIndexes]];
+    
+    cell.eventLabel.text = [events objectAtIndex:[indexes indexOfObject:[data objectForKey:@"event"]]];
     if([[data objectForKey:@"event"] intValue] == LTEventTypeSolid) {
         cell.eventLabel.textColor = [data objectForKey:@"color"];
     } else {

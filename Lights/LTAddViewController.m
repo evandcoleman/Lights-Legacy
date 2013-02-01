@@ -118,7 +118,12 @@
     if([selection isKindOfClass:[NSArray class]]) {
         self.repeatOption = selection;
     } else if([selection isKindOfClass:[NSNumber class]]) {
-        self.eventOption = ([selection intValue] + 1);
+        NSArray *indexes = [[LTNetworkController sharedInstance] animationIndexes];
+        if([selection integerValue] == 0) {
+            self.eventOption = LTEventTypeSolid;
+        } else {
+            self.eventOption = [[indexes objectAtIndex:([selection integerValue]-1)] integerValue];
+        }
     } else if([selection isKindOfClass:[UIColor class]]) {
         self.colorOption = selection;
     }
@@ -166,7 +171,8 @@
         cell.detailTextLabel.text = detail;
     } else if(indexPath.row == 1) {
         cell.textLabel.text = @"Event";
-        cell.detailTextLabel.text = [self.events objectAtIndex:(self.eventOption - 1)];
+        NSArray *indexes = [@[[NSNumber numberWithInt:LTEventTypeSolid]] arrayByAddingObjectsFromArray:[[LTNetworkController sharedInstance] animationIndexes]];
+        cell.detailTextLabel.text = [self.events objectAtIndex:[indexes indexOfObject:[NSNumber numberWithInt:self.eventOption]]];
     } else if(indexPath.row == 2) {
         cell.textLabel.text = @"Color";
         cell.textLabel.textColor = self.colorOption;
