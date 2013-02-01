@@ -92,8 +92,14 @@
         [mut setObject:newDays forKey:@"repeat"];
         [mut setObject:[NSDate dateWithTimeIntervalSince1970:[[dict objectForKey:@"time"] doubleValue]] forKey:@"date"];
         NSArray *rgb = [dict objectForKey:@"color"];
-        UIColor *color = [UIColor colorWithRed:([[rgb objectAtIndex:0] floatValue] / 255.0f) green:([[rgb objectAtIndex:1] floatValue] / 255.0f) blue:([[rgb objectAtIndex:2] floatValue] / 255.0f) alpha:1.0f];
-        [mut setObject:color forKey:@"color"];
+        if(rgb != nil) {
+            UIColor *color = [UIColor colorWithRed:([[rgb objectAtIndex:0] floatValue] / 255.0f) green:([[rgb objectAtIndex:1] floatValue] / 255.0f) blue:([[rgb objectAtIndex:2] floatValue] / 255.0f) alpha:1.0f];
+            [mut setObject:color forKey:@"color"];
+        }
+        if([dict objectForKey:@"state"]) {
+            [mut setObject:[dict objectForKey:@"state"] forKey:@"state"];
+        }
+        
         [events addObject:mut];
     }
     [[[LTNetworkController sharedInstance] schedule] addObjectsFromArray:events];
