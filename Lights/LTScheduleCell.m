@@ -7,6 +7,7 @@
 //
 
 #import "LTScheduleCell.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface LTScheduleCell ()
 
@@ -38,13 +39,14 @@
 }
 
 - (void)awakeFromNib {
-    CGFloat margin = 40.0f;
+    //Ignore this for now
+    /*CGFloat margin = 40.0f;
     self.timeNormalRect = self.timeLabel.frame;
     self.repeatNormalRect = self.repeatLabel.frame;
     self.eventNormalRect = self.eventLabel.frame;
     self.timeEditRect = CGRectMake(self.timeNormalRect.origin.x + margin, self.timeNormalRect.origin.y, self.timeNormalRect.size.width, self.timeNormalRect.size.height);
     self.repeatEditRect = CGRectMake(self.repeatEditRect.origin.x + margin, self.repeatEditRect.origin.y, self.repeatEditRect.size.width, self.repeatEditRect.size.height);
-    self.eventEditRect = CGRectMake(self.eventEditRect.origin.x + margin, self.eventEditRect.origin.y, self.eventEditRect.size.width, self.eventEditRect.size.height);
+    self.eventEditRect = CGRectMake(self.eventEditRect.origin.x + margin, self.eventEditRect.origin.y, self.eventEditRect.size.width, self.eventEditRect.size.height);*/
     
     self.timeLabel.backgroundColor = [UIColor clearColor];
     self.timeLabel.shadowColor = [UIColor whiteColor];
@@ -59,8 +61,17 @@
     self.eventLabel.shadowOffset = CGSizeMake(0, 1);
 }
 
-/*- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationCurveEaseInOut animations:^(void) {
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+    [super setEditing:editing animated:animated];
+    
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.2f;
+    animation.type = kCATransitionFade;
+    
+    self.toggleSwitch.hidden = editing;
+    
+    //Ignore this for now
+    /*if(YES) {
         if(editing && self.timeLabel.frame.origin.x == self.timeNormalRect.origin.x) {
             NSLog(@"editing");
             self.timeLabel.frame = self.timeEditRect;
@@ -72,9 +83,10 @@
             self.repeatLabel.frame = self.repeatNormalRect;
             self.eventLabel.frame = self.eventNormalRect;
         }
-    } completion:NULL];
-    NSLog(@"%d",editing);
-    [super setEditing:editing animated:animated];
-}*/
+    }*/
+    
+    [self.toggleSwitch.layer addAnimation:animation forKey:@"editFade"];
+    [self.toggleSwitch setNeedsDisplay];
+}
 
 @end

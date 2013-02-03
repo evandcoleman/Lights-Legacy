@@ -89,6 +89,14 @@ static LTNetworkController *_sharedInstance = nil;
     }
 }
 
+- (NSMutableArray *)schedule {
+    if(_schedule != nil) {
+        NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
+        [_schedule sortUsingDescriptors:@[sort]];
+    }
+    return _schedule;
+}
+
 #pragma mark - Private Methods
 
 - (void)flushScheduledEvents {
