@@ -74,3 +74,10 @@ Follow the tutorial [here](http://learn.adafruit.com/12mm-led-pixels/wiring).
 ### iOS App ###
 
 Nothing special is required for this part. Just open the Xcode project, build, and install. The server address can be set from inside the app.
+
+## TODO ##
+
+* Add more animations
+* Allow editing of scheduled events
+* Add speed and brightness settings for animations
+* Make Mac version
