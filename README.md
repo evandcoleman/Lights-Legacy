@@ -36,7 +36,6 @@ Your exact setup may vary, but here is a list of parts that my setup uses (All l
 #### Installation ####
 
 1. The Arduino sketch requires several third-party libraries, all of which can be found on Github. Download each one and place it in the `libraries` folder of your Arduino directory, which, in my setup, is `~/Documents/Arduino/`.
-
 	* [WebSocketClient](https://github.com/hadleyrich/ArduinoWebsocketClient)
 	* [aJSON Library](https://github.com/interactive-matter/aJson)
 	* [WS2801 Library](https://github.com/adafruit/Adafruit-WS2801-Library)
@@ -56,19 +55,14 @@ Follow the tutorial [here](http://learn.adafruit.com/12mm-led-pixels/wiring).
 1. Install [node.js](http://nodejs.org)
 2. Install required Node packages:
 	* [ws](https://github.com/einaros/ws): 
-	
 		```npm install ws```
 	* [cubby](https://github.com/icodeforlove/node-cubby): 
-	
 		```npm install cubby```
 	* [cron](https://github.com/ncb000gt/node-cron): 
-	
 		```npm install cron```
 	* You may also want to install [forever](https://github.com/nodejitsu/forever) to keep your server running in case of a crash: 
-	
 		```npm install forever -g```
 3. Upload the app.js file included in this repository to your server and start it.
-
 	```forever start app.js```
 	
 ### iOS App ###
