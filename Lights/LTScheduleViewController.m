@@ -86,7 +86,7 @@
         NSArray *days = [repeat componentsSeparatedByString:@","];
         NSMutableArray *newDays = [NSMutableArray array];
         for(NSString *a in days) {
-            if([a integerValue] > 0)
+            if([a integerValue] >= 0)
                 [newDays addObject:[NSNumber numberWithInteger:[a integerValue]]];
         }
         [mut setObject:newDays forKey:@"repeat"];

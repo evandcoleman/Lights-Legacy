@@ -8,6 +8,8 @@
 
 `Lights` uses a central WebSocket server to proxy commands from the iOS app to the Arduino. In theory, this project could be modified so that the WebSocket server runs directly on the Arduino, thus removing the need for a separate server, but that is outside the scope of this project.
 
+**Note:** See the `doc` folder for more information such as the app's API in case you wish to code your own Arduino sketch or WebSocket server.
+
 ## Parts ##
 
 Your exact setup may vary, but here is a list of parts that my setup uses (All links are to [Adafruit.com](http://adafruit.com), but many parts can be found cheaper elsewhere on the internet):

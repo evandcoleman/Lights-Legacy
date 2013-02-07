@@ -50,8 +50,9 @@
     self.scrollView.contentSize = CGSizeMake(640, self.scrollView.frame.size.height);
     self.tableView.frame = CGRectMake(320.0f, 0, 320.0f, self.scrollView.frame.size.height);
     
-    self.colorPicker.frame = self.view.frame;
-    self.colorPicker.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.colorPicker.frame = CGRectMake(0, 0, self.view.frame.size.width, self.scrollView.frame.size.height);
+    //self.colorPicker.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+    //self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 	[self.colorPicker addTarget:self action:@selector(pickerChanged:) forControlEvents:UIControlEventValueChanged];
 	[self.scrollView addSubview:self.colorPicker];
     [self.scrollView addSubview:self.tableView];
