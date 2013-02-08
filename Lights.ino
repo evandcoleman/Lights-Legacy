@@ -16,9 +16,9 @@ long previousMillis = 0;
 int oldj = 0;
 int isAnimating = 0;
 
-char server[] = "evancoleman.net";
+char server[] = "server.com";
 char path[] = "/";
-int port = 9000;
+int port = 8080;
 WebSocketClient client;
 
 String currentState = "";
