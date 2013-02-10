@@ -128,8 +128,8 @@ static LTNetworkController *_sharedInstance = nil;
     return [self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:LTEventTypeSolid], @"color" : @[r, g, b]}];
 }
 
-- (NSString *)json_animateWithOption:(LTEventType)option {
-    return [self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:option]}];
+- (NSString *)json_animateWithOption:(LTEventType)option brightness:(float)brightness speed:(float)speed {
+    return [self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:option], @"brightness" : [NSNumber numberWithInt:brightness], @"speed" : [NSNumber numberWithInt:speed]}];
 }
 
 - (NSString *)json_scheduleEvent:(NSDictionary *)dict {
@@ -177,11 +177,7 @@ static LTNetworkController *_sharedInstance = nil;
     if([message hasPrefix:@"currentState"]) {
         NSString *command  = [message stringByReplacingOccurrencesOfString:@"currentState: " withString:@""];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[command dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
-        if([[dict objectForKey:@"event"] integerValue] == LTEventTypeSolid) {
-            NSArray *rgb = [dict objectForKey:@"color"];
-            UIColor *color = [UIColor colorWithRed:[[rgb objectAtIndex:0] floatValue]/255.0f green:[[rgb objectAtIndex:1] floatValue]/255.0f blue:[[rgb objectAtIndex:2] floatValue]/255.0f alpha:1.0f];
-            [self.colorPickers makeObjectsPerformSelector:@selector(setSelectedColor:) withObject:color];
-        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"LTReceivedQueryNotification" object:nil userInfo:dict];
     } else {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[message dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
         if([[dict objectForKey:@"event"] integerValue] == LTEventTypeQuerySchedule) {

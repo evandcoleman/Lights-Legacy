@@ -31,7 +31,6 @@ typedef enum {
 @property (strong, nonatomic, readonly) SRWebSocket *socket;
 @property (nonatomic, strong, readonly) NSArray *animationOptions;
 @property (nonatomic, strong, readonly) NSArray *animationIndexes;
-@property (nonatomic, strong, readonly) NSMutableArray *colorPickers;
 @property (nonatomic, strong, readonly) NSMutableArray *schedule;
 @property (nonatomic, strong) NSString *server;
 
@@ -48,7 +47,7 @@ typedef enum {
 - (NSString *)json_query;
 - (NSString *)json_querySchedule;
 - (NSString *)json_solidWithColor:(UIColor *)color;
-- (NSString *)json_animateWithOption:(LTEventType)option;
+- (NSString *)json_animateWithOption:(LTEventType)option brightness:(float)brightness speed:(float)speed;
 - (NSString *)json_scheduleEvent:(NSDictionary *)dict;
 
 - (void)scheduleEvent:(LTEventType)event date:(NSDate *)date color:(UIColor *)color repeat:(NSArray *)repeat;
