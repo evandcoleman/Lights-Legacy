@@ -5,16 +5,19 @@
 #include <aJSON.h>
 #include <avr/wdt.h>
 
+
 byte mac[] = { 0x90, 0xA2, 0xDA, 0x0D, 0x9C, 0xEA };
 byte ip[] = { 192, 168, 0, 108 };  
 
 int dataPin  = 2;    // Yellow wire on Adafruit Pixels
 int clockPin = 3;    // Green wire on Adafruit Pixels
-Adafruit_WS2801 strip = Adafruit_WS2801(25 /* number of LEDs */, dataPin, clockPin);
+Adafruit_WS2801 strip = Adafruit_WS2801(49 /* number of LEDs */, dataPin, clockPin);
 
 long previousMillis = 0;
 int oldj = 0;
 int isAnimating = 0;
+unsigned long interval = 50;
+int brightness = 255;
 
 char server[] = "evancoleman.net";
 char path[] = "/";
@@ -27,13 +30,13 @@ int queryEvent = 0;
 int rainbowEvent = 2;
 int colorWipeEvent = 3;
 int rainbowCycleEvent = 6;
-uint32_t animColors[] = {Color(255,0,0), Color(255,255,0), Color(0,255,0), Color(0,255,255), Color(0,0,255), Color(255,0,255)};
+
 int colorIndex = 0;
 int maxColors = 6;
 
 void setup() {
   Serial.begin(9600);
-  wdt_enable(WDTO_4S);
+  wdt_enable(WDTO_2S);
   strip.begin();
   strip.show();
 }
@@ -48,23 +51,21 @@ void loop() {
   }
   client.monitor();
   
+  unsigned long currentMillis = millis();
+    
+  if(currentMillis - previousMillis > 300000) { 
+    previousMillis = currentMillis; 
+    client.send("ping");
+  }
+    
   if(isAnimating != 0) {
-    int interval = 0;
-    if(isAnimating == 1) {
-     interval = 20;
-    } else if(isAnimating == 2) {
-     interval = 50; 
-    } else if(isAnimating == 6) {
-     interval = 50; 
-    }
-    unsigned long currentMillis = millis();
     
     if(currentMillis - previousMillis > interval) { 
       previousMillis = currentMillis; 
       if(isAnimating == 1) {
         //Rainbow
         oldj++;
-        if(oldj >= 256) oldj = 0;
+        if(oldj >= (brightness+1)) oldj = 0;
         rainbow(oldj);
       } else if(isAnimating == 2) {
         //Color Wipe
@@ -75,7 +76,7 @@ void loop() {
             colorIndex = 0;
           }
         }
-        strip.setPixelColor(oldj, animColors[colorIndex]);
+        strip.setPixelColor(oldj, animColors(colorIndex));
         strip.show();
         oldj++;
       } else if(isAnimating == 3) {
@@ -91,11 +92,12 @@ void loop() {
 void connectToServer() {
   Serial.println("Connecting...");
   
-  Ethernet.begin(mac,ip);
+  Ethernet.begin(mac, ip);
   if(client.connect(server,path,port)) {
     Serial.println("Connected"); 
+    setColor(0, 0, 0);
     client.setDataArrivedDelegate(dataArrived);
-    dataArrived(client, currentState);
+    //dataArrived(client, currentState);
   } else {
     Serial.println("Connection Failed");
     strip.setPixelColor(0, Color(255, 0, 0));
@@ -104,6 +106,9 @@ void connectToServer() {
 }
 
 void dataArrived(WebSocketClient client, String data) {
+  if(data.startsWith("currentState")) {
+    return;
+  }
   //Serial.println("Data Arrived: " + data);
   char *c = data.buffer;
   if(data.length() == 0) {
@@ -127,16 +132,19 @@ void dataArrived(WebSocketClient client, String data) {
     client.send("currentState: " + currentState);
   } else if(event->valueint == rainbowEvent) {
     currentState = data;
-    aJsonObject *option = aJson.getObjectItem(root, "option");
+    interval = aJson.getObjectItem(root, "speed")->valueint;
+    brightness = aJson.getObjectItem(root, "brightness")->valueint;
     isAnimating = 1;
   } else if(event->valueint == colorWipeEvent) {
     currentState = data;
-    aJsonObject *option = aJson.getObjectItem(root, "option");
+    interval = aJson.getObjectItem(root, "speed")->valueint;
+    brightness = aJson.getObjectItem(root, "brightness")->valueint;
     isAnimating = 2;
     setColor(0,0,0);
   } else if(event->valueint == rainbowCycleEvent) {
     currentState = data;
-    aJsonObject *option = aJson.getObjectItem(root, "option");
+    interval = aJson.getObjectItem(root, "speed")->valueint;
+    brightness = aJson.getObjectItem(root, "brightness")->valueint;
     isAnimating = 3;
   }
   aJson.deleteItem(root);
@@ -149,10 +157,40 @@ void setColor(int r, int g, int b) {
   strip.show();
 }
 
+uint32_t animColors(int i) {
+  //animColors[] = {Color(brightness,0,0), Color(brightness,brightness,0), Color(0,brightness,0), 
+  //Color(0,brightness,brightness), Color(0,0,brightness), Color(brightness,0,brightness)};
+  uint32_t retVal;
+  switch(i) {
+     case 0:
+       retVal = Color(brightness,0,0);
+       break;
+     case 1:
+       retVal = Color(brightness,brightness,0);
+       break;
+     case 2:
+       retVal = Color(0,brightness,0);
+       break;
+     case 3:
+       retVal = Color(0,brightness,brightness);
+       break;
+     case 4:
+       retVal = Color(0,0,brightness);
+       break;
+     case 5:
+       retVal = Color(brightness,0,brightness);
+       break;
+     default:
+       retVal = Color(brightness,0,0);
+       break;
+  }
+  return retVal;
+}
+
 void rainbow(int j) {
    int i;
     for (i=0; i < strip.numPixels(); i++) {
-      strip.setPixelColor(i, Wheel( (i + j) % 255));
+      strip.setPixelColor(i, Wheel( (j) % brightness));
     }  
     strip.show();   // write all the pixels out
 }
@@ -166,7 +204,7 @@ void rainbowCycle(int j) {
       // (thats the i / strip.numPixels() part)
       // Then add in j which makes the colors go around per pixel
       // the % 96 is to make the wheel cycle around
-      strip.setPixelColor(i, Wheel( ((i * 256 / strip.numPixels()) + j) % 256) );
+      strip.setPixelColor(i, Wheel( ((i * (brightness+1) / strip.numPixels()) + j) % (brightness+1)) );
     }  
     strip.show();   // write all the pixels out
     //delay(wait);
@@ -186,14 +224,14 @@ uint32_t Color(byte r, byte g, byte b)
 
 uint32_t Wheel(byte WheelPos)
 {
-  if (WheelPos < 85) {
-   return Color(WheelPos * 3, 255 - WheelPos * 3, 0);
-  } else if (WheelPos < 170) {
-   WheelPos -= 85;
-   return Color(255 - WheelPos * 3, 0, WheelPos * 3);
+  if (WheelPos < (brightness/3)) {
+   return Color(WheelPos * 3, brightness - WheelPos * 3, 0);
+  } else if (WheelPos < (brightness/1.5)) {
+   WheelPos -= (brightness/3);
+   return Color(brightness - WheelPos * 3, 0, WheelPos * 3);
   } else {
-   WheelPos -= 170; 
-   return Color(0, WheelPos * 3, 255 - WheelPos * 3);
+   WheelPos -= (brightness/1.5); 
+   return Color(0, WheelPos * 3, brightness - WheelPos * 3);
   }
 }
 
