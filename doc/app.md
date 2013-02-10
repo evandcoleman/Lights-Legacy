@@ -50,7 +50,11 @@ Currently there are 7 event types. The event tells the server what to do with th
 	* **Integer:** `2`, `3`, `6`
 	* **iOS app:** `LTEventTypeAnimateRainbow`, `LTEventTypeAnimateColorWipe`, `LTEventTypeAnimateRainbowCycle`
 	* Tells the Arduino to animate the LEDs.
-	* **Other elements:** none.
+	* **Other elements:**
+		* Key: `speed`
+		* Object: Integer representing the interval to animate (in milliseconds)
+		* Key: `brightness`
+		* Object: Integer representing the brightness of the colors. Can range from 255 to 100. (Below 100 causes some weird things to happen with the animation, so let's just make that the minimum)
 
 ## Scheduling Events ##
 

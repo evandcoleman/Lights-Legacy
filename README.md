@@ -73,5 +73,5 @@ Nothing special is required for this part. Just open the Xcode project, build, a
 
 * Add more animations
 * Allow editing of scheduled events
-* Add speed and brightness settings for animations
+* ~~Add speed and brightness settings for animations~~
 * Make Mac version
