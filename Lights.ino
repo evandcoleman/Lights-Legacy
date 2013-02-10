@@ -19,9 +19,9 @@ int isAnimating = 0;
 unsigned long interval = 50;
 int brightness = 255;
 
-char server[] = "evancoleman.net";
+char server[] = "server.com";
 char path[] = "/";
-int port = 9000;
+int port = 8080;
 WebSocketClient client;
 
 String currentState = "";
