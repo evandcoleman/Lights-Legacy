@@ -37,8 +37,8 @@ static LTNetworkController *_sharedInstance = nil;
     if(self) {
         self.colorPickers = [NSMutableArray array];
         self.schedule = [NSMutableArray array];
-        self.animationOptions = @[@"Rainbow", @"Rainbow Cycle", @"Color Wipe"];
-        self.animationIndexes = @[[NSNumber numberWithInt:LTEventTypeAnimateRainbow], [NSNumber numberWithInt:LTEventTypeAnimateRainbowCycle], [NSNumber numberWithInt:LTEventTypeAnimateColorWipe]];
+        self.animationOptions = @[@"Rainbow", @"Rainbow Cycle", @"Color Wipe", @"Bounce"];
+        self.animationIndexes = @[[NSNumber numberWithInt:LTEventTypeAnimateRainbow], [NSNumber numberWithInt:LTEventTypeAnimateRainbowCycle], [NSNumber numberWithInt:LTEventTypeAnimateColorWipe], [NSNumber numberWithInt:LTEventTypeAnimateBounce]];
         
         self.server = [[NSUserDefaults standardUserDefaults] objectForKey:@"LTServerKey"];
         [[[[[(LTAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] viewControllers] lastObject] tabBarItem] setBadgeValue:@""];

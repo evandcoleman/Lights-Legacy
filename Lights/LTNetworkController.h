@@ -16,7 +16,8 @@ typedef enum {
     LTEventTypeAnimateColorWipe = 3,
     LTEventTypeQuerySchedule = 4,
     LTEventTypeFlushEvents = 5,
-    LTEventTypeAnimateRainbowCycle = 6
+    LTEventTypeAnimateRainbowCycle = 6,
+    LTEventTypeAnimateBounce = 7
 } LTEventType;
 
 @class LTNetworkController;
