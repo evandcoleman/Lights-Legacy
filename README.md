@@ -75,3 +75,9 @@ Nothing special is required for this part. Just open the Xcode project, build, a
 * Allow editing of scheduled events
 * ~~Add speed and brightness settings for animations~~
 * Make Mac version
+
+## Acknowledgments ##
+
+* All listed node.js packages and Arduino libraries
+* [SocketRocket](https://github.com/square/SocketRocket)
+* [KZColorPicker](https://github.com/alexrestrepo/KZColorPicker)
