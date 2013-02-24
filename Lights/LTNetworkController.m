@@ -10,6 +10,7 @@
 #import "LTAppDelegate.h"
 
 static LTNetworkController *_sharedInstance = nil;
+NSString *const kLTConnectionDidOpenNotification = @"LTConnectionDidOpenNotification";
 
 @interface LTNetworkController ()
 
@@ -18,8 +19,19 @@ static LTNetworkController *_sharedInstance = nil;
 @property (nonatomic, strong) NSArray *animationIndexes;
 @property (nonatomic, strong) NSMutableArray *colorPickers;
 @property (nonatomic, strong) NSMutableArray *schedule;
+@property (nonatomic, strong) NSArray *x10Devices;
 
 - (void)flushScheduledEvents;
+- (void)sendJSONString:(NSString *)message;
+
+- (NSString *)jsonStringForDictionary:(NSDictionary *)dict;
+- (NSString *)json_query;
+- (NSString *)json_getX10Devices;
+- (NSString *)json_querySchedule;
+- (NSString *)json_solidWithColor:(UIColor *)color;
+- (NSString *)json_animateWithOption:(LTEventType)option brightness:(float)brightness speed:(float)speed;
+- (NSString *)json_scheduleEvent:(NSDictionary *)dict;
+- (NSString *)json_sendX10Command:(LTX10Command)command houseCode:(NSInteger)house device:(NSInteger)device;
 
 @end
 
@@ -72,8 +84,12 @@ static LTNetworkController *_sharedInstance = nil;
     }
 }
 
-- (void)sendJSONString:(NSString *)message {
-    [self.socket send:message];
+- (void)animateWithOption:(LTEventType)option brightness:(float)brightness speed:(float)speed {
+    [self sendJSONString:[self json_animateWithOption:option brightness:brightness speed:speed]];
+}
+
+- (void)solidWithColor:(UIColor *)color {
+    [self sendJSONString:[self json_solidWithColor:color]];
 }
 
 - (void)scheduleEvent:(LTEventType)event date:(NSDate *)date color:(UIColor *)color repeat:(NSArray *)repeat {
@@ -89,6 +105,23 @@ static LTNetworkController *_sharedInstance = nil;
     }
 }
 
+- (void)queryColor {
+    [self sendJSONString:[self json_query]];
+}
+
+- (void)querySchedule {
+    [self sendJSONString:[self json_querySchedule]];
+}
+
+- (void)queryX10DevicesWithDelegate:(id<LTNetworkControllerDelegate>)delegate {
+    self.delegate = delegate;
+    [self sendJSONString:[self json_getX10Devices]];
+}
+
+- (void)sendX10Command:(LTX10Command)command houseCode:(NSInteger)house device:(NSInteger)device {
+    [self sendJSONString:[self json_sendX10Command:command houseCode:house device:device]];
+}
+
 - (NSMutableArray *)schedule {
     if(_schedule != nil) {
         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
@@ -98,6 +131,11 @@ static LTNetworkController *_sharedInstance = nil;
 }
 
 #pragma mark - Private Methods
+
+- (void)sendJSONString:(NSString *)message {
+    //NSLog(@"Sending: %@",message);
+    [self.socket send:message];
+}
 
 - (void)flushScheduledEvents {
     [self.socket send:[self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:LTEventTypeFlushEvents]}]];
@@ -117,6 +155,14 @@ static LTNetworkController *_sharedInstance = nil;
 
 - (NSString *)json_querySchedule {
     return [self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:LTEventTypeQuerySchedule]}];
+}
+
+- (NSString *)json_getX10Devices {
+    return [self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:LTEventTypeGetX10Devices]}];
+}
+
+- (NSString *)json_sendX10Command:(LTX10Command)command houseCode:(NSInteger)house device:(NSInteger)device {
+    return [self jsonStringForDictionary:@{@"event" : [NSNumber numberWithInt:LTEventTypeX10Command], @"command" : [NSNumber numberWithInt:command], @"houseCode" : [NSNumber numberWithInt:house], @"device" : [NSNumber numberWithInt:device]}];
 }
 
 - (NSString *)json_solidWithColor:(UIColor *)color {
@@ -163,7 +209,8 @@ static LTNetworkController *_sharedInstance = nil;
 #pragma mark - SocketRocket Delegate
 
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket {
-    [webSocket send:[self json_query]];
+    //[webSocket send:[self json_query]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLTConnectionDidOpenNotification object:nil];
     [[[[[(LTAppDelegate *)[[UIApplication sharedApplication] delegate] tabBarController] viewControllers] lastObject] tabBarItem] setBadgeValue:nil];
 }
 
@@ -181,6 +228,11 @@ static LTNetworkController *_sharedInstance = nil;
     } else {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[message dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingAllowFragments error:nil];
         if([[dict objectForKey:@"event"] integerValue] == LTEventTypeQuerySchedule) {
+            if(self.delegate != nil) {
+                [self.delegate networkController:self receivedMessage:dict];
+            }
+        } else if([[dict objectForKey:@"event"] integerValue] == LTEventTypeGetX10Devices) {
+            self.x10Devices = [[dict objectForKey:@"devices"] copy];
             if(self.delegate != nil) {
                 [self.delegate networkController:self receivedMessage:dict];
             }

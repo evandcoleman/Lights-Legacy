@@ -17,8 +17,24 @@ typedef enum {
     LTEventTypeQuerySchedule = 4,
     LTEventTypeFlushEvents = 5,
     LTEventTypeAnimateRainbowCycle = 6,
-    LTEventTypeAnimateBounce = 7
+    LTEventTypeAnimateBounce = 7,
+    LTEventTypeGetX10Devices = 8,
+    LTEventTypeX10Command = 9
 } LTEventType;
+
+typedef enum {
+    LTX10CommandOff = 0,
+    LTX10CommandOn = 1,
+    LTX10CommandDim = 2,
+    LTX10CommandBright = 3
+} LTX10Command;
+
+typedef enum {
+    LTX10DeviceAppliance = 0,
+    LTX10DeviceLamp = 1
+} LTX10Device;
+
+extern NSString *const kLTConnectionDidOpenNotification;
 
 @class LTNetworkController;
 
@@ -33,6 +49,7 @@ typedef enum {
 @property (nonatomic, strong, readonly) NSArray *animationOptions;
 @property (nonatomic, strong, readonly) NSArray *animationIndexes;
 @property (nonatomic, strong, readonly) NSMutableArray *schedule;
+@property (nonatomic, strong, readonly) NSArray *x10Devices;
 @property (nonatomic, strong) NSString *server;
 
 @property (nonatomic, weak) id<LTNetworkControllerDelegate> delegate;
@@ -42,16 +59,14 @@ typedef enum {
 - (void)openConnection;
 - (void)closeConnection;
 - (void)reconnect;
-- (void)sendJSONString:(NSString *)message;
 
-- (NSString *)jsonStringForDictionary:(NSDictionary *)dict;
-- (NSString *)json_query;
-- (NSString *)json_querySchedule;
-- (NSString *)json_solidWithColor:(UIColor *)color;
-- (NSString *)json_animateWithOption:(LTEventType)option brightness:(float)brightness speed:(float)speed;
-- (NSString *)json_scheduleEvent:(NSDictionary *)dict;
-
+- (void)animateWithOption:(LTEventType)option brightness:(float)brightness speed:(float)speed;
+- (void)solidWithColor:(UIColor *)color;
 - (void)scheduleEvent:(LTEventType)event date:(NSDate *)date color:(UIColor *)color repeat:(NSArray *)repeat;
 - (void)scheduleEdited;
+- (void)queryColor;
+- (void)querySchedule;
+- (void)queryX10DevicesWithDelegate:(id<LTNetworkControllerDelegate>)delegate;
+- (void)sendX10Command:(LTX10Command)command houseCode:(NSInteger)house device:(NSInteger)device;
 
 @end

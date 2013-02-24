@@ -8,7 +8,8 @@
 
 #import "LTAppDelegate.h"
 
-#import "LTNowViewController.h"
+#import "LTHomeViewController.h"
+#import "LTColorViewController.h"
 #import "LTSettingsViewController.h"
 #import "LTScheduleViewController.h"
 #import "LTNetworkController.h"
@@ -19,11 +20,12 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    UIViewController *viewController1 = [[LTNowViewController alloc] initWithNibName:@"LTNowViewController" bundle:nil];
+    UIViewController *viewController0 = [[LTHomeViewController alloc] initWithNibName:@"LTHomeViewController" bundle:nil];
+    UIViewController *viewController1 = [[LTColorViewController alloc] initWithNibName:@"LTColorViewController" bundle:nil];
     UIViewController *viewController2 = [[LTScheduleViewController alloc] initWithNibName:@"LTScheduleViewController" bundle:nil];
     UIViewController *viewController3 = [[LTSettingsViewController alloc] initWithNibName:@"LTSettingsViewController" bundle:nil];
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[viewController1, viewController2, viewController3];
+    self.tabBarController.viewControllers = @[viewController0, viewController1, viewController2, viewController3];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     

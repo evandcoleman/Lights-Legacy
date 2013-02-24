@@ -47,7 +47,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [[LTNetworkController sharedInstance] setDelegate:self];
-    [[LTNetworkController sharedInstance] sendJSONString:[[LTNetworkController sharedInstance] json_querySchedule]];
+    [[LTNetworkController sharedInstance] querySchedule];
     [super viewDidAppear:animated];
 }
 

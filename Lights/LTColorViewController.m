@@ -6,11 +6,11 @@
 //  Copyright (c) 2013 Evan Coleman. All rights reserved.
 //
 
-#import "LTNowViewController.h"
+#import "LTColorViewController.h"
 #import "KZColorPicker.h"
 #import "LTNetworkController.h"
 
-@interface LTNowViewController ()
+@interface LTColorViewController ()
 
 @property (nonatomic, strong) KZColorPicker *colorPicker;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -27,17 +27,18 @@
 - (void)brightnessChanged:(id)sender;
 - (void)speedChanged:(id)sender;
 - (void)didReceiveQueryResponse:(NSNotification *)notification;
+- (void)connectionDidOpen:(NSNotification *)notification;
 
 @end
 
-@implementation LTNowViewController
+@implementation LTColorViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Now", @"Now");
-        self.tabBarItem.image = [UIImage imageNamed:@"now"];
+        self.title = NSLocalizedString(@"Colors", @"Colors");
+        self.tabBarItem.image = [UIImage imageNamed:@"flower"];
         self.currentOption = -1;
         _colorPicker = [[KZColorPicker alloc] initWithFrame:CGRectZero];
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -61,6 +62,7 @@
         [self.brightSlider addTarget:self action:@selector(brightnessChanged:) forControlEvents:UIControlEventValueChanged];
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveQueryResponse:) name:@"LTReceivedQueryNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connectionDidOpen:) name:kLTConnectionDidOpenNotification object:nil];
     }
     return self;
 }
@@ -115,17 +117,21 @@
     }
 }
 
+- (void)connectionDidOpen:(NSNotification *)notification {
+    [[LTNetworkController sharedInstance] queryColor];
+}
+
 #pragma mark - Sliders
 
 - (void)brightnessChanged:(id)sender {
     if(self.currentOption >= 0) {
-        [[LTNetworkController sharedInstance] sendJSONString:[[LTNetworkController sharedInstance] json_animateWithOption:self.currentOption brightness:self.brightSlider.value speed:(self.speedSlider.maximumValue - self.speedSlider.value)]];
+        [[LTNetworkController sharedInstance] animateWithOption:self.currentOption brightness:self.brightSlider.value speed:(self.speedSlider.maximumValue - self.speedSlider.value)];
     }
 }
 
 - (void)speedChanged:(id)sender {
     if(self.currentOption >= 0) {
-        [[LTNetworkController sharedInstance] sendJSONString:[[LTNetworkController sharedInstance] json_animateWithOption:self.currentOption brightness:self.brightSlider.value speed:(self.speedSlider.maximumValue - self.speedSlider.value)]];
+        [[LTNetworkController sharedInstance] animateWithOption:self.currentOption brightness:self.brightSlider.value speed:(self.speedSlider.maximumValue - self.speedSlider.value)];
     }
 }
 
@@ -134,7 +140,7 @@
 - (void)pickerChanged:(id)sender {
     self.currentOption = -1;
     [self.tableView reloadData];
-    [[LTNetworkController sharedInstance] sendJSONString:[[LTNetworkController sharedInstance] json_solidWithColor:self.colorPicker.selectedColor]];
+    [[LTNetworkController sharedInstance] solidWithColor:self.colorPicker.selectedColor];
 }
 
 #pragma mark - Scroll View Delegate
@@ -159,10 +165,13 @@
         case LTEventTypeAnimateRainbowCycle:
             self.speedSlider.value = (self.speedSlider.maximumValue - 20.0f);
             break;
+        case LTEventTypeAnimateBounce:
+            self.speedSlider.value = (self.speedSlider.maximumValue - 20.0f);
+            break;
         default:
             break;
     }
-    [[LTNetworkController sharedInstance] sendJSONString:[[LTNetworkController sharedInstance] json_animateWithOption:self.currentOption brightness:self.brightSlider.value speed:(self.speedSlider.maximumValue - self.speedSlider.value)]];
+    [[LTNetworkController sharedInstance] animateWithOption:self.currentOption brightness:self.brightSlider.value speed:(self.speedSlider.maximumValue - self.speedSlider.value)];
     [tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 }
 

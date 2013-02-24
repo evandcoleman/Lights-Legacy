@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		200C76C816D03ECC004693F1 /* flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 200C76C616D03ECC004693F1 /* flower.png */; };
+		200C76C916D03ECC004693F1 /* flower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 200C76C716D03ECC004693F1 /* flower@2x.png */; };
+		200C76CD16D03F1D004693F1 /* LTHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C76CB16D03F1D004693F1 /* LTHomeViewController.m */; };
+		200C76CE16D03F1D004693F1 /* LTHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200C76CC16D03F1D004693F1 /* LTHomeViewController.xib */; };
+		200C76D116D03F85004693F1 /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = 200C76CF16D03F85004693F1 /* house.png */; };
+		200C76D216D03F85004693F1 /* house@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 200C76D016D03F85004693F1 /* house@2x.png */; };
+		200C76D516D08C3C004693F1 /* RNBlurModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C76D416D08C3C004693F1 /* RNBlurModalView.m */; };
+		200C76D816D08E58004693F1 /* LTX10LampView.m in Sources */ = {isa = PBXBuildFile; fileRef = 200C76D716D08E58004693F1 /* LTX10LampView.m */; };
+		200C76DA16D08E6E004693F1 /* LTX10LampView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200C76D916D08E6E004693F1 /* LTX10LampView.xib */; };
+		200C76DC16D09062004693F1 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200C76DB16D09062004693F1 /* Accelerate.framework */; };
 		203E847016C5CE0C0086C015 /* dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 203E846E16C5CE0C0086C015 /* dark.png */; };
 		203E847116C5CE0C0086C015 /* dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 203E846F16C5CE0C0086C015 /* dark@2x.png */; };
 		203E847616C5D3870086C015 /* turtle.png in Resources */ = {isa = PBXBuildFile; fileRef = 203E847216C5D3870086C015 /* turtle.png */; };
@@ -21,6 +31,8 @@
 		207ABCD516BB637E003F9602 /* LTSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 207ABCD316BB637E003F9602 /* LTSettingsViewController.xib */; };
 		207ABCD816BB63B6003F9602 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 207ABCD616BB63B6003F9602 /* gear.png */; };
 		207ABCD916BB63B6003F9602 /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 207ABCD716BB63B6003F9602 /* gear@2x.png */; };
+		20BB87C416D1DA3900BF869C /* LTX10ApplianceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20BB87C316D1DA3900BF869C /* LTX10ApplianceView.xib */; };
+		20BB87C716D1DA5B00BF869C /* LTX10ApplianceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BB87C616D1DA5B00BF869C /* LTX10ApplianceView.m */; };
 		20CA978116AF8EC20099F6F5 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 20CA977A16AF8EC20099F6F5 /* base64.c */; };
 		20CA978216AF8EC20099F6F5 /* NSData+SRB64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA977D16AF8EC20099F6F5 /* NSData+SRB64Additions.m */; };
 		20CA978316AF8EC20099F6F5 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CA978016AF8EC20099F6F5 /* SRWebSocket.m */; };
@@ -37,9 +49,9 @@
 		20D9E00116A8974200393078 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E00016A8974200393078 /* Default.png */; };
 		20D9E00316A8974200393078 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E00216A8974200393078 /* Default@2x.png */; };
 		20D9E00516A8974200393078 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E00416A8974200393078 /* Default-568h@2x.png */; };
-		20D9E00816A8974200393078 /* LTNowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E00716A8974200393078 /* LTNowViewController.m */; };
+		20D9E00816A8974200393078 /* LTColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E00716A8974200393078 /* LTColorViewController.m */; };
 		20D9E00F16A8974200393078 /* LTScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D9E00E16A8974200393078 /* LTScheduleViewController.m */; };
-		20D9E01616A8974200393078 /* LTNowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E01416A8974200393078 /* LTNowViewController.xib */; };
+		20D9E01616A8974200393078 /* LTColorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E01416A8974200393078 /* LTColorViewController.xib */; };
 		20D9E01916A8974200393078 /* LTScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E01716A8974200393078 /* LTScheduleViewController.xib */; };
 		20D9E02216A8983A00393078 /* schedule.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E02016A8983A00393078 /* schedule.png */; };
 		20D9E02316A8983A00393078 /* schedule@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 20D9E02116A8983A00393078 /* schedule@2x.png */; };
@@ -69,6 +81,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		200C76C616D03ECC004693F1 /* flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flower.png; sourceTree = "<group>"; };
+		200C76C716D03ECC004693F1 /* flower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flower@2x.png"; sourceTree = "<group>"; };
+		200C76CA16D03F1D004693F1 /* LTHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTHomeViewController.h; sourceTree = "<group>"; };
+		200C76CB16D03F1D004693F1 /* LTHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTHomeViewController.m; sourceTree = "<group>"; };
+		200C76CC16D03F1D004693F1 /* LTHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTHomeViewController.xib; sourceTree = "<group>"; };
+		200C76CF16D03F85004693F1 /* house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house.png; sourceTree = "<group>"; };
+		200C76D016D03F85004693F1 /* house@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "house@2x.png"; sourceTree = "<group>"; };
+		200C76D316D08C3C004693F1 /* RNBlurModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBlurModalView.h; sourceTree = "<group>"; };
+		200C76D416D08C3C004693F1 /* RNBlurModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBlurModalView.m; sourceTree = "<group>"; };
+		200C76D616D08E58004693F1 /* LTX10LampView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTX10LampView.h; sourceTree = "<group>"; };
+		200C76D716D08E58004693F1 /* LTX10LampView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTX10LampView.m; sourceTree = "<group>"; };
+		200C76D916D08E6E004693F1 /* LTX10LampView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTX10LampView.xib; sourceTree = "<group>"; };
+		200C76DB16D09062004693F1 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		203E846E16C5CE0C0086C015 /* dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dark.png; sourceTree = "<group>"; };
 		203E846F16C5CE0C0086C015 /* dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dark@2x.png"; sourceTree = "<group>"; };
 		203E847216C5D3870086C015 /* turtle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = turtle.png; sourceTree = "<group>"; };
@@ -87,6 +112,9 @@
 		207ABCD316BB637E003F9602 /* LTSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTSettingsViewController.xib; sourceTree = "<group>"; };
 		207ABCD616BB63B6003F9602 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
 		207ABCD716BB63B6003F9602 /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear@2x.png"; sourceTree = "<group>"; };
+		20BB87C316D1DA3900BF869C /* LTX10ApplianceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTX10ApplianceView.xib; sourceTree = "<group>"; };
+		20BB87C516D1DA5B00BF869C /* LTX10ApplianceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTX10ApplianceView.h; sourceTree = "<group>"; };
+		20BB87C616D1DA5B00BF869C /* LTX10ApplianceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTX10ApplianceView.m; sourceTree = "<group>"; };
 		20CA977A16AF8EC20099F6F5 /* base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = base64.c; sourceTree = "<group>"; };
 		20CA977B16AF8EC20099F6F5 /* base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
 		20CA977C16AF8EC20099F6F5 /* NSData+SRB64Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SRB64Additions.h"; sourceTree = "<group>"; };
@@ -112,11 +140,11 @@
 		20D9E00016A8974200393078 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		20D9E00216A8974200393078 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		20D9E00416A8974200393078 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		20D9E00616A8974200393078 /* LTNowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTNowViewController.h; sourceTree = "<group>"; };
-		20D9E00716A8974200393078 /* LTNowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTNowViewController.m; sourceTree = "<group>"; };
+		20D9E00616A8974200393078 /* LTColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTColorViewController.h; sourceTree = "<group>"; };
+		20D9E00716A8974200393078 /* LTColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTColorViewController.m; sourceTree = "<group>"; };
 		20D9E00D16A8974200393078 /* LTScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTScheduleViewController.h; sourceTree = "<group>"; };
 		20D9E00E16A8974200393078 /* LTScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTScheduleViewController.m; sourceTree = "<group>"; };
-		20D9E01516A8974200393078 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LTNowViewController.xib; sourceTree = "<group>"; };
+		20D9E01516A8974200393078 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LTColorViewController.xib; sourceTree = "<group>"; };
 		20D9E01816A8974200393078 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LTScheduleViewController.xib; sourceTree = "<group>"; };
 		20D9E02016A8983A00393078 /* schedule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule.png; sourceTree = "<group>"; };
 		20D9E02116A8983A00393078 /* schedule@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "schedule@2x.png"; sourceTree = "<group>"; };
@@ -163,6 +191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				200C76DC16D09062004693F1 /* Accelerate.framework in Frameworks */,
 				20CA978A16AF8F010099F6F5 /* Security.framework in Frameworks */,
 				20CA978816AF8EF80099F6F5 /* CFNetwork.framework in Frameworks */,
 				20CA978616AF8EEF0099F6F5 /* libicucore.dylib in Frameworks */,
@@ -212,6 +241,7 @@
 		20D9DFED16A8974200393078 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				200C76DB16D09062004693F1 /* Accelerate.framework */,
 				20CA978916AF8F010099F6F5 /* Security.framework */,
 				20CA978716AF8EF80099F6F5 /* CFNetwork.framework */,
 				20CA978516AF8EEF0099F6F5 /* libicucore.dylib */,
@@ -228,14 +258,18 @@
 			children = (
 				20F6D4ED16B4D004002AE977 /* ShadowedTableView.h */,
 				20F6D4EE16B4D004002AE977 /* ShadowedTableView.m */,
+				200C76D316D08C3C004693F1 /* RNBlurModalView.h */,
+				200C76D416D08C3C004693F1 /* RNBlurModalView.m */,
 				20CA977916AF8EC20099F6F5 /* SocketRocket */,
 				20D9E03316A89E3000393078 /* ColorPicker */,
 				20D9DFFD16A8974200393078 /* LTAppDelegate.h */,
 				20D9DFFE16A8974200393078 /* LTAppDelegate.m */,
 				2044E78916B39D4D001C92F7 /* LTNetworkController.h */,
 				2044E78A16B39D4D001C92F7 /* LTNetworkController.m */,
-				20D9E00616A8974200393078 /* LTNowViewController.h */,
-				20D9E00716A8974200393078 /* LTNowViewController.m */,
+				200C76CA16D03F1D004693F1 /* LTHomeViewController.h */,
+				200C76CB16D03F1D004693F1 /* LTHomeViewController.m */,
+				20D9E00616A8974200393078 /* LTColorViewController.h */,
+				20D9E00716A8974200393078 /* LTColorViewController.m */,
 				20D9E00D16A8974200393078 /* LTScheduleViewController.h */,
 				20D9E00E16A8974200393078 /* LTScheduleViewController.m */,
 				207ABCD116BB637E003F9602 /* LTSettingsViewController.h */,
@@ -250,11 +284,18 @@
 				20F6D4D916B4C875002AE977 /* LTScheduleCell.m */,
 				203E847D16C5DF120086C015 /* LTScrollView.h */,
 				203E847E16C5DF120086C015 /* LTScrollView.m */,
-				20D9E01416A8974200393078 /* LTNowViewController.xib */,
+				20BB87C516D1DA5B00BF869C /* LTX10ApplianceView.h */,
+				20BB87C616D1DA5B00BF869C /* LTX10ApplianceView.m */,
+				200C76D616D08E58004693F1 /* LTX10LampView.h */,
+				200C76D716D08E58004693F1 /* LTX10LampView.m */,
+				200C76CC16D03F1D004693F1 /* LTHomeViewController.xib */,
+				20D9E01416A8974200393078 /* LTColorViewController.xib */,
 				20D9E01716A8974200393078 /* LTScheduleViewController.xib */,
 				207ABCD316BB637E003F9602 /* LTSettingsViewController.xib */,
 				2044E78F16B3A614001C92F7 /* LTAddViewController.xib */,
 				20F6D4DB16B4C896002AE977 /* LTScheduleCell.xib */,
+				200C76D916D08E6E004693F1 /* LTX10LampView.xib */,
+				20BB87C316D1DA3900BF869C /* LTX10ApplianceView.xib */,
 				20D9E01F16A8983000393078 /* Images */,
 				20D9DFF516A8974200393078 /* Supporting Files */,
 			);
@@ -278,6 +319,10 @@
 		20D9E01F16A8983000393078 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				200C76CF16D03F85004693F1 /* house.png */,
+				200C76D016D03F85004693F1 /* house@2x.png */,
+				200C76C616D03ECC004693F1 /* flower.png */,
+				200C76C716D03ECC004693F1 /* flower@2x.png */,
 				203E847216C5D3870086C015 /* turtle.png */,
 				203E847316C5D3870086C015 /* turtle@2x.png */,
 				203E847416C5D3870086C015 /* rabbit.png */,
@@ -381,7 +426,7 @@
 				20D9E00116A8974200393078 /* Default.png in Resources */,
 				20D9E00316A8974200393078 /* Default@2x.png in Resources */,
 				20D9E00516A8974200393078 /* Default-568h@2x.png in Resources */,
-				20D9E01616A8974200393078 /* LTNowViewController.xib in Resources */,
+				20D9E01616A8974200393078 /* LTColorViewController.xib in Resources */,
 				20D9E01916A8974200393078 /* LTScheduleViewController.xib in Resources */,
 				20D9E02216A8983A00393078 /* schedule.png in Resources */,
 				20D9E02316A8983A00393078 /* schedule@2x.png in Resources */,
@@ -404,6 +449,13 @@
 				203E847716C5D3870086C015 /* turtle@2x.png in Resources */,
 				203E847816C5D3870086C015 /* rabbit.png in Resources */,
 				203E847916C5D3870086C015 /* rabbit@2x.png in Resources */,
+				200C76C816D03ECC004693F1 /* flower.png in Resources */,
+				200C76C916D03ECC004693F1 /* flower@2x.png in Resources */,
+				200C76CE16D03F1D004693F1 /* LTHomeViewController.xib in Resources */,
+				200C76D116D03F85004693F1 /* house.png in Resources */,
+				200C76D216D03F85004693F1 /* house@2x.png in Resources */,
+				200C76DA16D08E6E004693F1 /* LTX10LampView.xib in Resources */,
+				20BB87C416D1DA3900BF869C /* LTX10ApplianceView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +468,7 @@
 			files = (
 				20D9DFFB16A8974200393078 /* main.m in Sources */,
 				20D9DFFF16A8974200393078 /* LTAppDelegate.m in Sources */,
-				20D9E00816A8974200393078 /* LTNowViewController.m in Sources */,
+				20D9E00816A8974200393078 /* LTColorViewController.m in Sources */,
 				20D9E00F16A8974200393078 /* LTScheduleViewController.m in Sources */,
 				20D9E05016A89E3000393078 /* HSV.c in Sources */,
 				20D9E05116A89E3000393078 /* KZColorCompareView.m in Sources */,
@@ -439,6 +491,10 @@
 				20F6D4EF16B4D005002AE977 /* ShadowedTableView.m in Sources */,
 				207ABCD416BB637E003F9602 /* LTSettingsViewController.m in Sources */,
 				203E847F16C5DF120086C015 /* LTScrollView.m in Sources */,
+				200C76CD16D03F1D004693F1 /* LTHomeViewController.m in Sources */,
+				200C76D516D08C3C004693F1 /* RNBlurModalView.m in Sources */,
+				200C76D816D08E58004693F1 /* LTX10LampView.m in Sources */,
+				20BB87C716D1DA5B00BF869C /* LTX10ApplianceView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,12 +509,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		20D9E01416A8974200393078 /* LTNowViewController.xib */ = {
+		20D9E01416A8974200393078 /* LTColorViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				20D9E01516A8974200393078 /* en */,
 			);
-			name = LTNowViewController.xib;
+			name = LTColorViewController.xib;
 			sourceTree = "<group>";
 		};
 		20D9E01716A8974200393078 /* LTScheduleViewController.xib */ = {

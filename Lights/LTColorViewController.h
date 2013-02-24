@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LTNowViewController : UIViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface LTColorViewController : UIViewController <UIScrollViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @end
