@@ -4,6 +4,7 @@
 #include "Adafruit_WS2801.h"
 #include <aJSON.h>
 #include <avr/wdt.h>
+#include <X10Firecracker.h>
 
 
 byte mac[] = { 0x90, 0xA2, 0xDA, 0x0D, 0x9C, 0xEA };
@@ -13,15 +14,19 @@ int dataPin  = 2;    // Yellow wire on Adafruit Pixels
 int clockPin = 3;    // Green wire on Adafruit Pixels
 Adafruit_WS2801 strip = Adafruit_WS2801(49 /* number of LEDs */, dataPin, clockPin);
 
+int rtsPin = 7; //RTS Pin for CM17A
+int dtrPin = 8; //DTR Pin for CM17A
+
 long previousMillis = 0;
 int oldj = 0;
+int animDirection = 0;
 int isAnimating = 0;
 unsigned long interval = 50;
 int brightness = 255;
 
-char server[] = "server.com";
+char server[] = "evancoleman.net";
 char path[] = "/";
-int port = 8080;
+int port = 9000;
 WebSocketClient client;
 
 String currentState = "";
@@ -30,6 +35,8 @@ int queryEvent = 0;
 int rainbowEvent = 2;
 int colorWipeEvent = 3;
 int rainbowCycleEvent = 6;
+int bounceEvent = 7;
+int x10Event = 9;
 
 int colorIndex = 0;
 int maxColors = 6;
@@ -37,6 +44,7 @@ int maxColors = 6;
 void setup() {
   Serial.begin(9600);
   wdt_enable(WDTO_2S);
+  X10.init( rtsPin, dtrPin, 1 );
   strip.begin();
   strip.show();
 }
@@ -84,6 +92,16 @@ void loop() {
         oldj++;
         if(oldj >= 256*5) oldj = 0;
         rainbowCycle(oldj);
+      } else if(isAnimating == 4) {
+        //Bounce
+        if(oldj == 0) {
+          colorIndex++;
+          if(colorIndex >= maxColors) {
+            colorIndex = 0;
+          }
+        }
+        
+        bounce();
       }
     }
   }
@@ -130,6 +148,12 @@ void dataArrived(WebSocketClient client, String data) {
   } else if(event->valueint == queryEvent) {
     Serial.println("Received Query Event");
     client.send("currentState: " + currentState);
+  } else if(event->valueint == x10Event) {
+    int device = aJson.getObjectItem(root, "device")->valueint;
+    int house = aJson.getObjectItem(root, "houseCode")->valueint;
+    int command = aJson.getObjectItem(root, "command")->valueint;
+    //Serial.println(commandForInt(command));
+    X10.sendCmd(houseCodeForChar(house), device, commandForInt(command));
   } else if(event->valueint == rainbowEvent) {
     currentState = data;
     interval = aJson.getObjectItem(root, "speed")->valueint;
@@ -146,6 +170,11 @@ void dataArrived(WebSocketClient client, String data) {
     interval = aJson.getObjectItem(root, "speed")->valueint;
     brightness = aJson.getObjectItem(root, "brightness")->valueint;
     isAnimating = 3;
+  } else if(event->valueint == bounceEvent) {
+    currentState = data;
+    interval = aJson.getObjectItem(root, "speed")->valueint;
+    brightness = aJson.getObjectItem(root, "brightness")->valueint;
+    isAnimating = 4;
   }
   aJson.deleteItem(root);
 }
@@ -211,6 +240,39 @@ void rainbowCycle(int j) {
   //}
 }
 
+void bounce() {
+  if(animDirection == 0) {
+          for(int i=0;i<strip.numPixels();i++) {
+            if(i == oldj) {
+              strip.setPixelColor(i, animColors(colorIndex));
+            } else {
+              strip.setPixelColor(i, Color(0,0,0));
+            }
+          }
+          if(oldj == (strip.numPixels()-1)) {
+            animDirection = 1;
+          }
+        } else if(animDirection == 1) {
+          for(int i=0;i<strip.numPixels();i++) {
+            if(i == oldj) {
+              strip.setPixelColor(i, animColors(colorIndex));
+            } else {
+              strip.setPixelColor(i, Color(0,0,0));
+            }
+          }
+          if(oldj == 0) {
+            animDirection = 0;
+          }
+        }
+        strip.show();
+        
+        if(animDirection == 0) {
+          oldj++;
+        } else {
+          oldj--;
+        }
+}
+
 uint32_t Color(byte r, byte g, byte b)
 {
   uint32_t c;
@@ -257,4 +319,84 @@ String splitString(String s, char parser,int index){
 
   }
   return rs;
+}
+
+HouseCode houseCodeForChar(int code) {
+  HouseCode ret;
+  switch(code) {
+    case 1:
+        ret = hcA;
+        break;
+    case 2:
+        ret = hcB;
+        break;
+    case 3:
+        ret = hcC;
+        break;
+    case 4:
+        ret = hcD;
+        break;
+    case 5:
+        ret = hcE;
+        break;
+    case 6:
+        ret = hcF;
+        break;
+    case 7:
+        ret = hcG;
+        break;
+    case 8:
+        ret = hcH;
+        break;
+    case 9:
+        ret = hcI;
+        break;
+    case 10:
+        ret = hcJ;
+        break;
+    case 11:
+        ret = hcK;
+        break;
+    case 12:
+        ret = hcL;
+        break;
+    case 13:
+        ret = hcM;
+        break;
+    case 14:
+        ret = hcN;
+        break;
+    case 15:
+        ret = hcO;
+        break;
+    case 16:
+        ret = hcP;
+        break;
+    default:
+        ret = hcA;
+        break;
+  }
+  return ret;
+}
+
+CommandCode commandForInt(int command) {
+  CommandCode ret = cmdOff;
+  switch(command) {
+    case 0:
+      ret = cmdOff;
+      break;
+    case 1:
+      ret = cmdOn;
+      break;
+    case 2:
+      ret = cmdDim;
+      break;
+    case 3:
+      ret = cmdBright;
+      break;
+    default:
+      ret = cmdOff;
+      break;
+  }
+  return ret;
 }

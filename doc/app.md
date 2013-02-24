@@ -47,14 +47,30 @@ Currently there are 7 event types. The event tells the server what to do with th
 		* Key: `color`
 		* Object: Array of three integers signifying an RGB color code (Red, Blue, Green)
 * **Animation Events**
-	* **Integer:** `2`, `3`, `6`
-	* **iOS app:** `LTEventTypeAnimateRainbow`, `LTEventTypeAnimateColorWipe`, `LTEventTypeAnimateRainbowCycle`
+	* **Integer:** `2`, `3`, `6`, `7`
+	* **iOS app:** `LTEventTypeAnimateRainbow`, `LTEventTypeAnimateColorWipe`, `LTEventTypeAnimateRainbowCycle`,`LTEventTypeAnimateBounce`
 	* Tells the Arduino to animate the LEDs.
 	* **Other elements:**
 		* Key: `speed`
 		* Object: Integer representing the interval to animate (in milliseconds)
 		* Key: `brightness`
 		* Object: Integer representing the brightness of the colors. Can range from 255 to 100. (Below 100 causes some weird things to happen with the animation, so let's just make that the minimum)
+* **Query X10 Devices**
+	* **Integer:** `8`
+	* **iOS app:** `LTEventTypeGetX10Devices`
+	* Returns the available X10 devices. See server app for structure.
+	* **Other elements:** none.
+* **Send X10 Command**
+	* **Integer:** `9`
+	* **iOS app:** `LTEventTypeX10Command`
+	* Sends a command to an X10 device.
+	* **Other elements:**
+		* Key: `command`
+		* Object: Integer from 0 to 3 representing the command. Commands are (respectivly from 0 to 3) `LTX10CommandOff`, `LTX10CommandOn`, `LTX10CommandDim`, `LTX10CommandBright`
+		* Key: `houseCode`
+		* Object: Integer of the X10 house code. 0 for A, 1 for B, etc.
+		* Key: `device`
+		* Object: Integer of the X10 device ID.
 
 ## Scheduling Events ##
 

@@ -4,6 +4,8 @@
 
 `Lights` allows you to change the color of the LEDs, animate the LEDs, and schedule events.
 
+`Lights` also allows you to control X10 devices.
+
 ## How does it work? ##
 
 `Lights` uses a central WebSocket server to proxy commands from the iOS app to the Arduino. In theory, this project could be modified so that the WebSocket server runs directly on the Arduino, thus removing the need for a separate server, but that is outside the scope of this project.
@@ -26,6 +28,10 @@ Your exact setup may vary, but here is a list of parts that my setup uses (All l
 * [4-pin JST SM Cables](https://www.adafruit.com/products/578)
 
 	This is just to connect the LEDs to the Arduino. I, for example, just used a few breadboard wires that I had lying around in place of this.
+* For X10 you'll need the following
+	* CM17A Firecracker (About $6 on eBay)
+	* TM751 Transceiver
+	* Any modules you want
 
 
 
@@ -39,16 +45,21 @@ Your exact setup may vary, but here is a list of parts that my setup uses (All l
 	* [WebSocketClient](https://github.com/hadleyrich/ArduinoWebsocketClient)
 	* [aJSON Library](https://github.com/interactive-matter/aJson)
 	* [WS2801 Library](https://github.com/adafruit/Adafruit-WS2801-Library)
+	* [CM17A Library](http://playground.arduino.cc/X10/CM17A)
+		* **Note:** you may need to change `wiring.h` to `Arduino.h` in `X10Firecracker.h`
 	
 2. Open the Arduino sketch `Lights.ino` which is included in this repository.
-3. Edit lines 7 and 8. Line 7 is the MAC address of the Arduino ethernet shield. This can be found on a sticker on newer shields. Line 8 is the local IP address to be assigned to the Arduino on your network.
-4. You may need to edit lines 10-12 depending on your configuration.
-5. Edit lines 18-20. These lines tell the Arduino where your WebSocket server is.
-6. Upload the sketch to your Arduino.
+3. Edit lines 10 and 11. Line 10 is the MAC address of the Arduino ethernet shield. This can be found on a sticker on newer shields. Line 11 is the local IP address to be assigned to the Arduino on your network.
+4. You may need to edit lines 13-14 depending on your configuration.
+5. Edit lines 27-29. These lines tell the Arduino where your WebSocket server is.
+6. If you plan to use X10, edit lines 17-18. These are the pins connected to the CM17A Firecracker.
+7. Upload the sketch to your Arduino.
 
 #### Wiring ####
 
 Follow the tutorial [here](http://learn.adafruit.com/12mm-led-pixels/wiring).
+
+For the X10 wiring, see [here](http://playground.arduino.cc/X10/CM17A)
 
 ### WebSocket Server ###
 
@@ -71,10 +82,11 @@ Nothing special is required for this part. Just open the Xcode project, build, a
 
 ## TODO ##
 
-* Add more animations
+* ~~Add more animations~~
 * Allow editing of scheduled events
 * ~~Add speed and brightness settings for animations~~
 * Make Mac version
+* Remove the need for an ethernet shield using Xbee and a Raspberry Pi as the gateway.
 
 ## Acknowledgments ##
 

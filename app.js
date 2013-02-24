@@ -3,6 +3,9 @@ var Cubby = require('cubby'),
     cubby = new Cubby();
 
 var scheduledEvents = new Array();
+
+var x10Units = new Array({name: "Desk Light", type: "0", houseCode: "2", deviceID: "1"},
+							{name: "Lamp", type: "1", houseCode: "2", deviceID: "2"});
     
 if(cubby.get('events') == null) {
 	cubby.set('events',{ events : [] });
@@ -29,7 +32,8 @@ console.log('Server Running...');
 wss.on('connection', function(ws) {
 	console.log('New Connection!');
     ws.on('message', function(message) {
-        //console.log('received: %s', message);
+        console.log('Received: ' + message);
+        //This try-catch block tries to parse the JSON data, if it fails then that means it's not valid JSON (meaning it's the currentState response) and sends it along to the iOS app.
         try {
 	        var js = JSON.parse(message);
         }
@@ -44,6 +48,10 @@ wss.on('connection', function(ws) {
 	        var events = cubby.get('events');
 	        events.event = 4;
 	        ws.send(JSON.stringify(events));
+	    } else if(js.event == 8) {
+	    	//Get X10 Devices
+	    	var ret = {event: 8, devices: x10Units};
+	    	ws.send(JSON.stringify(ret));
 	    } else if(js.event == 5) {
 	    	//flush schedules
 	    	cubby.set('events',{ events : [] });
