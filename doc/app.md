@@ -68,7 +68,7 @@ Currently there are 7 event types. The event tells the server what to do with th
 		* Key: `command`
 		* Object: Integer from 0 to 3 representing the command. Commands are (respectivly from 0 to 3) `LTX10CommandOff`, `LTX10CommandOn`, `LTX10CommandDim`, `LTX10CommandBright`
 		* Key: `houseCode`
-		* Object: Integer of the X10 house code. 0 for A, 1 for B, etc.
+		* Object: Integer of the X10 house code. 1 for A, 2 for B, etc.
 		* Key: `device`
 		* Object: Integer of the X10 device ID.
 
