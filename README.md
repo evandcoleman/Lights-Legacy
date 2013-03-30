@@ -44,7 +44,7 @@ Your exact setup may vary, but here is a list of parts that my setup uses (All l
 1. The Arduino sketch requires several third-party libraries, all of which can be found on Github. Download each one and place it in the `libraries` folder of your Arduino directory, which, in my setup, is `~/Documents/Arduino/`.
 	* [WebSocketClient](https://github.com/hadleyrich/ArduinoWebsocketClient)
 	* [aJSON Library](https://github.com/interactive-matter/aJson)
-	* [WS2801 Library](https://github.com/adafruit/Adafruit-WS2801-Library)
+	* [WS2801 Library](https://github.com/edc1591/Adafruit-WS2801-Library)
 	* [CM17A Library](http://playground.arduino.cc/X10/CM17A)
 		* **Note:** you may need to change `wiring.h` to `Arduino.h` in `X10Firecracker.h`
 	
