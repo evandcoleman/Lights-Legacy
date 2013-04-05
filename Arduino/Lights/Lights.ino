@@ -1,19 +1,20 @@
 #include "Config.h"
-#include <aJSON.h>
-#include <avr/wdt.h>
+//#include <avr/wdt.h>
 #include <X10Firecracker.h>
 #include <Adafruit_WS2801.h>
 #include "Colors.h"
 
 #if USE_SERIAL == 1
   #include <SoftwareSerial.h>
+  #include "bitlash.h"
   
   SoftwareSerial xbee(0, 1); // RX, TX
-  String inData;
+  
 #else
   #include <SPI.h>
   #include <Ethernet.h>
   #include <WebSocketClient.h>
+  #include <aJSON.h>
   
   byte mac[] = { 0x90, 0xA2, 0xDA, 0x0D, 0x9C, 0xEA };
   byte ip[] = { 192, 168, 0, 108 }; 
@@ -51,18 +52,30 @@ int bounceEvent = 7;
 int x10Event = 9;
 
 void setup() {
-  Serial.begin(9600);
+  //Serial.println("Running...");
   #if USE_SERIAL == 1
+    initBitlash(38400);
+    //Serial.begin(38400);
+    
+    addBitlashFunction("setcolor", (bitlash_function) func_setcolor);
+    addBitlashFunction("x10command", (bitlash_function) func_x10command);
+    addBitlashFunction("animate", (bitlash_function) func_animate);
+
     xbee.begin(38400);
   #endif
-  //wdt_enable(WDTO_2S);
+  //wdt_enable(WDTO_4S);
+  colors.init();
   X10.init( rtsPin, dtrPin, 1 );
 }
 
 void loop() {
   //wdt_reset();
   #if USE_SERIAL == 1
-    getSerialData();
+    runBitlash();
+    //getSerialData();
+    while(xbee.available() > 0) {
+       doCharacter(xbee.read());
+    }
   #else
     if(!client.connected()) {
       colors.setColor(0, 0, 0);
@@ -73,13 +86,13 @@ void loop() {
   #endif
   
   unsigned long currentMillis = millis();
-    
+  
+  #if USE_SERIAL == 0 
   if(currentMillis - previousMillis > 300000) { 
     previousMillis = currentMillis; 
-    #if USE_SERIAL == 0
     client.send("ping");
-    #endif
   }
+  #endif
     
   if(isAnimating != 0) {
     
@@ -90,16 +103,21 @@ void loop() {
   }
 }
 
+#if USE_SERIAL == 0
+
 void handleData(String data) {
     if(data.startsWith("currentState")) {
     return;
   }
+  
   //Serial.println("Data Arrived: " + data);
   char *c = data.buffer;
   if(data.length() == 0) {
     colors.setColor(0, 0, 0);
   }
+  
   aJsonObject *root = aJson.parse(c);
+  Serial.println(aJson.print(root));
   aJsonObject *event = aJson.getObjectItem(root, "event");
   //Serial.println(event->valuestring);
   colors.resetAnimation();
@@ -115,7 +133,7 @@ void handleData(String data) {
   } else if(event->valueint == queryEvent) {
     Serial.println("Received Query Event");
     #if USE_SERIAL == 1
-    xbee.send("currentState: " + currentState);
+    //xbee.print("currentState: " + currentState);
     #else
     client.send("currentState: " + currentState);
     #endif
@@ -147,10 +165,11 @@ void handleData(String data) {
     colors.brightness = aJson.getObjectItem(root, "brightness")->valueint;
     isAnimating = 4;
   }
+  
   aJson.deleteItem(root);
+  
 }
 
-#if USE_SERIAL == 0
 void connectToServer() {
   Serial.println("Connecting...");
   
@@ -172,22 +191,35 @@ void dataArrived(WebSocketClient client, String data) {
 
 #else
 
-void getSerialData(){
-  while (xbee.available() > 0)
-    {
-        char recieved = xbee.read();
-        inData += recieved; 
+numvar func_setcolor(void) {
+  isAnimating = 0;
+  int red = getarg(1);
+  int green = getarg(2);
+  int blue = getarg(3);
+  colors.setColor(red, green, blue);
+}
 
-        // Process message when new line character is recieved
-        if (recieved == '}')
-        {
-            //Serial.print("Arduino Received: ");
-            //Serial.println(inData);
-            handleData(inData);
+numvar func_x10command(void) {
+  int device = getarg(1);
+  int houseCode = getarg(2);
+  int command = getarg(3);
+  X10.sendCmd(houseCodeForChar(houseCode), device, commandForInt(command));
+}
 
-            inData = ""; // Clear recieved buffer
-        }
-    }
+numvar func_animate(void) {
+  int event = getarg(1);
+  colors.brightness = getarg(2);
+  interval = getarg(3);
+  if(event == rainbowEvent) {
+    isAnimating = 1;
+  } else if(event == colorWipeEvent) {
+    isAnimating = 2;
+    colors.setColor(0,0,0);
+  } else if(event == rainbowCycleEvent) {
+    isAnimating = 3;
+  } else if(event == bounceEvent) {
+    isAnimating = 4;
+  }
 }
 
 #endif

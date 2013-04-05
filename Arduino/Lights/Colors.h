@@ -7,6 +7,7 @@ class Colors {
     Colors(int dataPin, int clockPin, int numPixels);
     
     void
+      init(void),
       handleAnimation(int isAnimating),
       setPixelColor(int n, uint32_t c),
       setColor(int r, int g, int b),

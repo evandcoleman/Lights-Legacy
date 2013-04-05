@@ -1,12 +1,15 @@
 #include "Colors.h"
 
 Colors::Colors(int dataPin, int clockPin, int numPixels) {
+  strip = Adafruit_WS2801(numPixels , dataPin, clockPin);
+}
+
+void Colors::init(void) {
   animDirection = 0;
   oldj = 0;
   brightness = 255;
   colorIndex = 0;
   maxColors = 6;
-  strip = Adafruit_WS2801(numPixels , dataPin, clockPin);
   strip.begin();
   strip.show();
 }

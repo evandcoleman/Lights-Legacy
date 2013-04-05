@@ -1,6 +1,6 @@
 //Configuration Parameters
 
-#define USE_SERIAL 0
+#define USE_SERIAL 1
 
 //RGB Strip
 #define RGB_DATA_PIN 2    // Yellow wire on Adafruit Pixels
