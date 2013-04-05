@@ -12,7 +12,6 @@
 #import "LTX10LampView.h"
 #import "LTPresetAddViewController.h"
 #import "LTPresetDetailViewController.h"
-#import "MBProgressHUD.h"
 
 @interface LTHomeViewController ()
 
