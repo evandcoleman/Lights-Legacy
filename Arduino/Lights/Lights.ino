@@ -8,7 +8,7 @@
   #include <SoftwareSerial.h>
   #include "bitlash.h"
   
-  SoftwareSerial xbee(0, 1); // RX, TX
+  SoftwareSerial xbee(RX_PIN, TX_PIN); // RX, TX
   
 #else
   #include <SPI.h>
@@ -19,7 +19,7 @@
   byte mac[] = { 0x90, 0xA2, 0xDA, 0x0D, 0x9C, 0xEA };
   byte ip[] = { 192, 168, 0, 108 }; 
  
-  char server[] = "evancoleman.net";
+  char server[] = "server.com";
   char path[] = "/";
   int port = 9000;
   WebSocketClient client; 
@@ -33,9 +33,6 @@ HouseCode houseCodeForChar(int code);
 CommandCode commandForInt(int command);
 
 Colors colors = Colors(RGB_DATA_PIN, RGB_CLOCK_PIN, NUM_PIXELS);
-
-int rtsPin = 7; //RTS Pin for CM17A
-int dtrPin = 8; //DTR Pin for CM17A
 
 long previousMillis = 0;
 
@@ -65,7 +62,7 @@ void setup() {
   #endif
   //wdt_enable(WDTO_4S);
   colors.init();
-  X10.init( rtsPin, dtrPin, 1 );
+  X10.init( X10_RTS, X10_DTR, 1 );
 }
 
 void loop() {
