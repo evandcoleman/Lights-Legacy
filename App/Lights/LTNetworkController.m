@@ -21,7 +21,7 @@ NSString *const kLTConnectionDidOpenNotification = @"LTConnectionDidOpenNotifica
 @property (nonatomic, strong) NSMutableArray *colorPickers;
 @property (nonatomic, strong) NSMutableArray *schedule;
 @property (nonatomic, strong) NSArray *x10Devices;
-@property (nonatomic, strong) NSArray *presets;
+@property (nonatomic, strong) NSMutableArray *presets;
 
 - (void)flushScheduledEvents;
 - (void)sendJSONString:(NSString *)message;
@@ -130,6 +130,10 @@ NSString *const kLTConnectionDidOpenNotification = @"LTConnectionDidOpenNotifica
 - (void)queryPresetsWithDelegate:(id<LTNetworkControllerDelegate>)delegate {
     self.delegate = delegate;
     [self sendJSONString:[self json_queryPresets]];
+}
+
+- (void)updatePresets {
+    
 }
 
 - (NSMutableArray *)schedule {

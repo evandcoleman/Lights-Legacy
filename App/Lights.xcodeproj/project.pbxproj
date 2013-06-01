@@ -75,8 +75,6 @@
 		208CE29C16F123AE00F32706 /* LTPresetAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2017766E16DB03E800AE795E /* LTPresetAddViewController.xib */; };
 		208CE29D16F123AE00F32706 /* LTX10LampView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200C76D916D08E6E004693F1 /* LTX10LampView.xib */; };
 		208CE29E16F123AE00F32706 /* LTX10ApplianceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20BB87C316D1DA3900BF869C /* LTX10ApplianceView.xib */; };
-		208CE2A116F139D200F32706 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 208CE2A016F139D200F32706 /* MBProgressHUD.m */; };
-		208CE2A216F139D200F32706 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 208CE2A016F139D200F32706 /* MBProgressHUD.m */; };
 		20BB87C416D1DA3900BF869C /* LTX10ApplianceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20BB87C316D1DA3900BF869C /* LTX10ApplianceView.xib */; };
 		20BB87C716D1DA5B00BF869C /* LTX10ApplianceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BB87C616D1DA5B00BF869C /* LTX10ApplianceView.m */; };
 		20CA978116AF8EC20099F6F5 /* base64.c in Sources */ = {isa = PBXBuildFile; fileRef = 20CA977A16AF8EC20099F6F5 /* base64.c */; };
@@ -178,8 +176,6 @@
 		208CE27416F121CB00F32706 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		208CE27616F121CB00F32706 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		208CE27816F121CB00F32706 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		208CE29F16F139D200F32706 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		208CE2A016F139D200F32706 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		20BB87C316D1DA3900BF869C /* LTX10ApplianceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTX10ApplianceView.xib; sourceTree = "<group>"; };
 		20BB87C516D1DA5B00BF869C /* LTX10ApplianceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTX10ApplianceView.h; sourceTree = "<group>"; };
 		20BB87C616D1DA5B00BF869C /* LTX10ApplianceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTX10ApplianceView.m; sourceTree = "<group>"; };
@@ -371,8 +367,6 @@
 				20F6D4EE16B4D004002AE977 /* ShadowedTableView.m */,
 				200C76D316D08C3C004693F1 /* RNBlurModalView.h */,
 				200C76D416D08C3C004693F1 /* RNBlurModalView.m */,
-				208CE29F16F139D200F32706 /* MBProgressHUD.h */,
-				208CE2A016F139D200F32706 /* MBProgressHUD.m */,
 				20CA977916AF8EC20099F6F5 /* SocketRocket */,
 				20D9E03316A89E3000393078 /* ColorPicker */,
 				20D9DFFD16A8974200393078 /* LTAppDelegate.h */,
@@ -646,7 +640,6 @@
 				208CE28916F1226D00F32706 /* SRWebSocket.m in Sources */,
 				208CE26F16F121CB00F32706 /* main.m in Sources */,
 				208CE27316F121CB00F32706 /* SLAppDelegate.m in Sources */,
-				208CE2A216F139D200F32706 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,7 +678,6 @@
 				20BB87C716D1DA5B00BF869C /* LTX10ApplianceView.m in Sources */,
 				2017766F16DB03E800AE795E /* LTPresetAddViewController.m in Sources */,
 				2017767416DB0B0000AE795E /* LTPresetDetailViewController.m in Sources */,
-				208CE2A116F139D200F32706 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -66,7 +66,8 @@
 }
 
 - (void)presetAddViewDidFinishWithAction:(NSDictionary *)action {
-    
+    [[self.preset objectForKey:@"actions"] addObject:action];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -111,13 +112,12 @@
             NSArray *events = [nonAnim arrayByAddingObjectsFromArray:[[LTNetworkController sharedInstance] animationOptions]];
             NSArray *indexes = [@[[NSNumber numberWithInt:LTEventTypeSolid]] arrayByAddingObjectsFromArray:[[LTNetworkController sharedInstance] animationIndexes]];
             text = [events objectAtIndex:[indexes indexOfObject:[dict objectForKey:@"event"]]];
-            /*if([[dict objectForKey:@"event"] integerValue] == LTEventTypeSolid) {
+            if([[dict objectForKey:@"event"] integerValue] == LTEventTypeSolid) {
                 NSArray *rgb = [dict objectForKey:@"color"];
                 UIColor *color = [UIColor colorWithRed:[[rgb objectAtIndex:0] floatValue]/255 green:[[rgb objectAtIndex:1] floatValue]/255 blue:[[rgb objectAtIndex:2] floatValue]/255 alpha:1.0];
                 cell.textLabel.textColor = color;
-            }*/
+            }
         }
-        
         cell.textLabel.text = text;
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

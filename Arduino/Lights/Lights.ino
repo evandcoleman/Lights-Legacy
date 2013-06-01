@@ -56,7 +56,7 @@ void setup() {
     
     addBitlashFunction("setcolor", (bitlash_function) func_setcolor);
     addBitlashFunction("x10command", (bitlash_function) func_x10command);
-    addBitlashFunction("animate", (bitlash_function) func_animate);
+    addBitlashFunction("animate", (bitlash_function) func_animate);q
 
     xbee.begin(38400);
   #endif

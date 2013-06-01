@@ -47,6 +47,7 @@
         // Custom initialization
         self.title = NSLocalizedString(@"Home", @"Home");
         self.tabBarItem.image = [UIImage imageNamed:@"house"];
+
         #ifndef SIMPLE
         _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Devices",@"Presets"]];
         self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;

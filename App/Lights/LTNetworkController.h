@@ -54,7 +54,7 @@ extern NSString *const kLTConnectionDidOpenNotification;
 @property (nonatomic, strong, readonly) NSArray *animationIndexes;
 @property (nonatomic, strong, readonly) NSMutableArray *schedule;
 @property (nonatomic, strong, readonly) NSArray *x10Devices;
-@property (nonatomic, strong, readonly) NSArray *presets;
+@property (nonatomic, strong, readonly) NSMutableArray *presets;
 @property (nonatomic, strong) NSString *server;
 
 @property (nonatomic, weak) id<LTNetworkControllerDelegate> delegate;
@@ -77,5 +77,6 @@ extern NSString *const kLTConnectionDidOpenNotification;
 - (void)sendX10Command:(LTX10Command)command houseCode:(NSInteger)house device:(NSInteger)device;
 
 - (void)queryPresetsWithDelegate:(id<LTNetworkControllerDelegate>)delegate;
+- (void)updatePresets;
 
 @end

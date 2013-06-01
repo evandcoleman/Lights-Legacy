@@ -176,3 +176,4 @@ void Colors::handleAnimation(int isAnimating) {
 void Colors::resetAnimation(void) {
   oldj = 0;
 }
+

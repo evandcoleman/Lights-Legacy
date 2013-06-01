@@ -10,6 +10,8 @@
 
 @interface LTColorPickerViewController ()
 
+- (void)done:(id)sender;
+
 @end
 
 @implementation LTColorPickerViewController
@@ -21,6 +23,8 @@
         // Custom initialization
         _colorPicker = [[KZColorPicker alloc] initWithFrame:CGRectZero];
         [(UIControl *)self.colorPicker.alphaSlider setHidden:YES];
+        UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+        self.navigationItem.rightBarButtonItem = done;
     }
     return self;
 }
@@ -41,9 +45,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [self.delegate colorPickerDidFinish:self.colorPicker.selectedColor];
-    [super viewWillDisappear:animated];
+- (void)done:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:^(void) {
+        [self.delegate colorPickerDidFinish:self.colorPicker.selectedColor];
+    }];
 }
 
 @end
