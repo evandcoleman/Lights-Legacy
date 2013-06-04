@@ -1,3 +1,5 @@
+var winston = require('winston');
+
 var x10Units = new Array({name: "Fireplace Lights", type: "0", houseCode: "3", deviceID: "1"},
 							{name: "Desk Lights", type: "1", houseCode: "3", deviceID: "2"},
 							{name: "Couch Lights", type: "1", houseCode: "3", deviceID: "6"},
@@ -7,20 +9,23 @@ var x10Units = new Array({name: "Fireplace Lights", type: "0", houseCode: "3", d
 							
 var net = require('net');
 
+winston.add(winston.transports.File, { filename: '/var/log/lights.log' });
+winston.remove(winston.transports.Console);
+
 var client = net.connect(1099, function(){
 	var WebSocketServer = require('ws').Server, wss = new WebSocketServer({port: 9000});
-	console.log('Server Running...');
+	winston.info('Server Running...');
   	wss.on('connection', function(ws) {
-		console.log('New Connection!');
+		winston.info('New Connection!');
 		ws.on('message', function(message) {
-        	console.log('Received: ' + message);
+        	winston.info('Received: ' + message);
         	var js = JSON.parse(message);
         	if(js.event == 8) {
 	    		//Get X10 Devices
 	    		var ret = {event: 8, devices: x10Units};
 	    		ws.send(JSON.stringify(ret));
 	    	} else if(js.event == 9) {
-		    	console.log('Sending Event');
+		    	winston.info('Sending Event');
 		    	var house = String.fromCharCode(64+js.houseCode);
 		    	var command = null;
 		    	if(js.command == 4 || js.command == 5) {

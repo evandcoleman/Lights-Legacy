@@ -1,3 +1,4 @@
+var winston = require('winston');
 var cronJob = require('cron').CronJob;
 var Cubby = require('cubby'),
     cubby = new Cubby();
@@ -6,6 +7,9 @@ var scheduledEvents = new Array();
 
 var x10Units = new Array({name: "Desk Light", type: "0", houseCode: "2", deviceID: "1"},
 							{name: "Lamp", type: "1", houseCode: "2", deviceID: "2"});
+
+winston.add(winston.transports.File, { filename: '/var/log/lights.log' });
+winston.remove(winston.transports.Console);
     
 if(cubby.get('events') == null) {
 	cubby.set('events',{ events : [] });
@@ -20,7 +24,7 @@ if(cubby.get('events') == null) {
 		if(events.events[i].state == true) {
 		   	scheduleEvent(events.events[i], JSON.stringify(events.events[i]));
 		} else {
-        	console.log('Not Scheduling Event');
+        	winston.info('Not Scheduling Event');
 	    }
 	}
 	cubby.set('events',events);
@@ -28,11 +32,11 @@ if(cubby.get('events') == null) {
 
 var WebSocketServer = require('ws').Server
   , wss = new WebSocketServer({port: 9000});
-console.log('Server Running...');
+winston.info('Server Running...');
 wss.on('connection', function(ws) {
-	console.log('New Connection!');
+	winston.info('New Connection!');
     ws.on('message', function(message) {
-        console.log('Received: ' + message);
+        winston.info('Received: ' + message);
         //This try-catch block tries to parse the JSON data, if it fails then that means it's not valid JSON (meaning it's the currentState response) and sends it along to the iOS app.
         try {
 	        var js = JSON.parse(message);
@@ -67,10 +71,10 @@ wss.on('connection', function(ws) {
 	        	if(js.state == true) {
 		        	scheduleEvent(js, message);
 	        	} else {
-		        	console.log('Not Scheduling Event');
+		        	winston.info('Not Scheduling Event');
 	        	}
 	        } else {
-	        	console.log('Sending Event');
+	        	winston.info('Sending Event');
 		        for (var i = 0; i < wss.clients.length; i++) {
 		        	wss.clients[i].send(message);
 		        }
@@ -80,17 +84,17 @@ wss.on('connection', function(ws) {
 });
 
 function scheduleEvent(js, message) {
-    console.log('Event Scheduled');
+    winston.info('Event Scheduled');
     var date = new Date(js.time*1000);
     var cronString = date.getMinutes() + ' ' + date.getHours() + ' * * ' + js.repeat;
-    //console.log(cronString);
+    //winston.info(cronString);
     if(js.repeat == '') {
     	//one-time
         var job = new cronJob(date, function(){
         		for (var i = 0; i < wss.clients.length; i++) {
 	        		wss.clients[i].send(message);
 	        	}
-	        	console.log('Sending Scheduled Event');
+	        	winston.info('Sending Scheduled Event');
 	        	checkEvents();
 	    	}, function () {
 	    		//on-stop
@@ -108,7 +112,7 @@ function scheduleEvent(js, message) {
         		for (var i = 0; i < wss.clients.length; i++) {
 	        		wss.clients[i].send(message);
 	        	}
-	        	console.log('Sending Scheduled Event');
+	        	winston.info('Sending Scheduled Event');
 	        	checkEvents();
         	},
         	start: true,

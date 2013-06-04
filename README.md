@@ -87,6 +87,8 @@ For the X10 wiring, see [here](http://playground.arduino.cc/X10/CM17A)
 		```npm install cubby```
 	* [cron](https://github.com/ncb000gt/node-cron): 
 		```npm install cron```
+	* [winston](https://github.com/flatiron/winston): 
+		```npm install winston```
 	* You may also want to install [forever](https://github.com/nodejitsu/forever) to keep your server running in case of a crash: 
 		```npm install forever -g```
 3. Upload the app.js file included in this repository to your server and start it.
